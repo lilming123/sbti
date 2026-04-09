@@ -1,4 +1,4 @@
-# SBTI 人格测试
+# SBTI 人格测试 
 
 SBTI（Silly Behavioral Type Indicator）是一个轻松向的在线人格测试网站。通过 32 道题目，从自我认知、感情投入、行动方式和社交边界等日常状态出发，帮你看见自己更像哪一种人格。
 
