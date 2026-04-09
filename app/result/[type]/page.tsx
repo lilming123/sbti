@@ -10,6 +10,7 @@ import {
 } from "@/lib/dimensions";
 import type { Metadata } from "next";
 import type { Level, DimensionCode } from "@/lib/dimensions";
+import { SubmitRanking } from "@/components/SubmitRanking";
 
 /* ── Static params for all 27 types ── */
 export function generateStaticParams() {
@@ -219,6 +220,7 @@ export default async function ResultPage({
 
         {/* ── Action buttons ── */}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <SubmitRanking typeCode={t.code} />
           <Link
             href="/test"
             className="inline-flex items-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
