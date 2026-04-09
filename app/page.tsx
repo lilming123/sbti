@@ -40,9 +40,46 @@ const topRankings = [
   { rank: 3, code: "CTRL", cn: "拿捏者", slug: "ctrl", count: 273, pct: "6.1%" },
 ];
 
+const SITE_URL = "https://sbti.xiachat.com";
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "SBTI",
+  alternateName: "SBTI 人格测试在线测试",
+  url: SITE_URL,
+  description: "SBTI 人格测试在线测试入口。立即测出你的 SBTI 人格类型，查看 27 种人格结果、十五维人格落点和详细解读。",
+  inLanguage: "zh-CN",
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqList.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "SBTI 人格测试",
+  url: SITE_URL,
+  applicationCategory: "EntertainmentApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
+  description: "32 道题测出你的 SBTI 人格类型，27 种结果 + 15 维度落点分析。免费、无需注册。",
+  inLanguage: "zh-CN",
+};
+
 export default function HomePage() {
   return (
     <main className="flex-1">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }} />
       {/* ── Hero ── */}
       <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[1.15fr_0.85fr] lg:items-center gap-12 lg:gap-16">

@@ -4,7 +4,14 @@ import { personalityTypes } from "@/lib/types";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "人格类型总览",
+  title: "27 种 SBTI 人格类型总览 | 拿捏者、尤物、吗喽、小丑...",
+  description: "浏览全部 27 种 SBTI 人格类型：CTRL 拿捏者、SEXY 尤物、MALO 吗喽、JOKE-R 小丑、ZZZZ 装死者等。每种人格都有专属插画、详细描述和十五维落点。",
+  alternates: { canonical: "https://sbti.xiachat.com/types" },
+  openGraph: {
+    title: "27 种 SBTI 人格类型总览",
+    description: "浏览全部 27 种 SBTI 人格类型，每种都有专属插画和详细描述。",
+    url: "https://sbti.xiachat.com/types",
+  },
 };
 
 export default function TypesPage() {

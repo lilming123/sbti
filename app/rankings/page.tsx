@@ -3,7 +3,14 @@ import { typeByCode } from "@/lib/types";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "人格排行榜",
+  title: "SBTI 人格排行榜 | 实时统计最常见的人格类型",
+  description: "查看 SBTI 人格排行榜，实时统计 27 种人格类型的提交数据和排名。当前最热门：尤物 SEXY、多情者 LOVE-R、拿捏者 CTRL。看看你的人格排第几？",
+  alternates: { canonical: "https://sbti.xiachat.com/rankings" },
+  openGraph: {
+    title: "SBTI 人格排行榜 | 实时统计最常见的人格类型",
+    description: "查看 27 种 SBTI 人格类型的实时排名和提交数据。",
+    url: "https://sbti.xiachat.com/rankings",
+  },
 };
 
 const rankingData = [

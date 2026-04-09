@@ -3,9 +3,14 @@ import Link from "next/link";
 import { modelGroups } from "@/lib/dimensions";
 
 export const metadata: Metadata = {
-  title: "关于 SBTI 测试",
-  description:
-    "SBTI 是一套轻松向的人格测试，从五个维度、十五个子指标观察你的行为倾向，共 27 种人格结果。",
+  title: "关于 SBTI 测试 | 五组切面 · 十五维度 · 27 种人格",
+  description: "了解 SBTI 人格测试的设计原理。五组人格切面（自我、情感、态度、行动驱力、社交），十五个维度，27 种人格结果。不用术语定义你，更贴近日常状态的人格测试。",
+  alternates: { canonical: "https://sbti.xiachat.com/about" },
+  openGraph: {
+    title: "关于 SBTI 测试 | 五组切面 · 十五维度 · 27 种人格",
+    description: "了解 SBTI 人格测试的五组切面和十五维度评分系统。",
+    url: "https://sbti.xiachat.com/about",
+  },
 };
 
 const stats = [
