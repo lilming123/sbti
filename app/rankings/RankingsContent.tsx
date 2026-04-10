@@ -1,7 +1,47 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, useState } from "react";
+import QRCode from "qrcode";
 import { useLocale } from "@/components/Providers";
+
+const SITE_URL = "https://sbti.xiachat.com";
+
+/* ── Canvas helpers ── */
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+/* ── SVG icons ── */
+
+const DownloadIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
 
 interface RankingItem {
   code: string;
@@ -19,11 +59,183 @@ interface Props {
 
 export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
   const { t } = useLocale();
+  const [generating, setGenerating] = useState(false);
 
   const top3 = rankings.slice(0, 3);
   const rest = rankings.slice(3);
   const maxCount = rankings[0]?.count ?? 1;
   const typeCount = rankings.length;
+
+  const generateAndDownload = useCallback(async () => {
+    setGenerating(true);
+    try {
+      const displayItems = rankings.slice(0, 15);
+      const rowH = 48;
+      const headerH = 200;
+      const footerH = 140;
+      const W = 750;
+      const H = headerH + displayItems.length * rowH + footerH + 40;
+      const pad = 40;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      await document.fonts.ready;
+
+      // Background
+      ctx.fillStyle = "#f7f4ed";
+      ctx.fillRect(0, 0, W, H);
+
+      // Card
+      ctx.fillStyle = "#ffffff";
+      roundRect(ctx, pad, pad, W - pad * 2, H - pad * 2, 28);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(0,0,0,0.06)";
+      ctx.lineWidth = 1;
+      roundRect(ctx, pad, pad, W - pad * 2, H - pad * 2, 28);
+      ctx.stroke();
+
+      const cx = pad + 30;
+
+      // Title
+      ctx.fillStyle = "#0f172a";
+      ctx.font = 'bold 32px "Noto Sans SC", system-ui, sans-serif';
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+      ctx.fillText(t("rankings.title"), cx, pad + 30);
+
+      // Stats line
+      ctx.fillStyle = "#64748b";
+      ctx.font = '400 16px "Noto Sans SC", system-ui, sans-serif';
+      ctx.fillText(
+        `${t("rankings.totalSubmissions")} ${total.toLocaleString()}  ·  ${typeCount} ${t("rankings.typesUnit")}${t("rankings.typesOnBoard")}  ·  ${dateStr}`,
+        cx, pad + 76
+      );
+
+      // Divider
+      const divY1 = pad + 110;
+      ctx.strokeStyle = "rgba(0,0,0,0.08)";
+      ctx.beginPath();
+      ctx.moveTo(cx, divY1);
+      ctx.lineTo(W - pad - 30, divY1);
+      ctx.stroke();
+
+      // Column header
+      const startY = pad + 130;
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = '600 13px "Noto Sans SC", system-ui, sans-serif';
+      ctx.textAlign = "left";
+      ctx.fillText("#", cx, startY);
+      ctx.fillText(t("nav.types"), cx + 40, startY);
+      ctx.textAlign = "right";
+      ctx.fillText("%", W - pad - 30, startY);
+
+      // Ranking rows
+      const barMaxW = 240;
+      const barX = 330;
+      const barH = 16;
+
+      displayItems.forEach((item, i) => {
+        const y = headerH + i * rowH;
+        const rank = i + 1;
+        const pct = total > 0 ? ((item.count / total) * 100).toFixed(1) : "0.0";
+        const barW = (item.count / maxCount) * barMaxW;
+
+        // Rank number
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        if (rank <= 3) {
+          ctx.fillStyle = "#065f46";
+          ctx.font = 'bold 16px "Noto Sans SC", system-ui, sans-serif';
+        } else {
+          ctx.fillStyle = "#64748b";
+          ctx.font = '400 15px "Noto Sans SC", system-ui, sans-serif';
+        }
+        ctx.fillText(`${rank}`, cx, y + rowH / 2);
+
+        // Name
+        ctx.fillStyle = "#0f172a";
+        ctx.font = rank <= 3
+          ? 'bold 16px "Noto Sans SC", system-ui, sans-serif'
+          : '400 15px "Noto Sans SC", system-ui, sans-serif';
+        ctx.fillText(item.cn, cx + 40, y + rowH / 2);
+
+        // Code badge
+        ctx.font = '600 11px "Noto Sans SC", system-ui, sans-serif';
+        const codeW = ctx.measureText(item.code).width + 16;
+        const codeX = cx + 170;
+        ctx.fillStyle = "#ecfdf5";
+        roundRect(ctx, codeX, y + rowH / 2 - 10, codeW, 20, 10);
+        ctx.fill();
+        ctx.fillStyle = "#065f46";
+        ctx.textAlign = "left";
+        ctx.fillText(item.code, codeX + 8, y + rowH / 2);
+
+        // Bar bg
+        ctx.fillStyle = "#f1f5f9";
+        roundRect(ctx, barX, y + rowH / 2 - barH / 2, barMaxW, barH, 8);
+        ctx.fill();
+
+        // Bar fill
+        if (barW > 0) {
+          ctx.fillStyle = rank <= 3 ? "#10b981" : "#6ee7b7";
+          roundRect(ctx, barX, y + rowH / 2 - barH / 2, Math.max(barW, 8), barH, 8);
+          ctx.fill();
+        }
+
+        // Count + percentage
+        ctx.fillStyle = "#475569";
+        ctx.font = '400 13px "Noto Sans SC", system-ui, sans-serif';
+        ctx.textAlign = "right";
+        ctx.fillText(`${item.count}  (${pct}%)`, W - pad - 30, y + rowH / 2);
+      });
+
+      // Footer divider
+      const footerY = headerH + displayItems.length * rowH + 10;
+      ctx.strokeStyle = "rgba(0,0,0,0.08)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx, footerY);
+      ctx.lineTo(W - pad - 30, footerY);
+      ctx.stroke();
+
+      // QR code
+      const qrDataUrl = await QRCode.toDataURL(`${SITE_URL}/rankings`, {
+        width: 200, margin: 1, color: { dark: "#0f172a", light: "#ffffff" },
+      });
+      const qrImg = await loadImage(qrDataUrl);
+      const qrSize = 90;
+      const qrY = footerY + 20;
+      ctx.drawImage(qrImg, cx, qrY, qrSize, qrSize);
+
+      // Footer text
+      ctx.fillStyle = "#0f172a";
+      ctx.font = 'bold 18px "Noto Sans SC", system-ui, sans-serif';
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+      ctx.fillText(t("share.canvasQr"), cx + qrSize + 20, qrY + 10);
+
+      ctx.fillStyle = "#64748b";
+      ctx.font = '400 14px "Noto Sans SC", system-ui, sans-serif';
+      ctx.fillText("sbti.xiachat.com/rankings", cx + qrSize + 20, qrY + 38);
+
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = '400 13px "Noto Sans SC", system-ui, sans-serif';
+      ctx.fillText(t("rankings.shareTag"), cx + qrSize + 20, qrY + 62);
+
+      // Download
+      const dataUrl = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = `SBTI-Rankings-${dateStr}.png`;
+      link.href = dataUrl;
+      link.click();
+    } finally {
+      setGenerating(false);
+    }
+  }, [rankings, total, maxCount, typeCount, dateStr, t]);
 
   return (
     <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
@@ -33,6 +245,31 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
       <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600 dark:text-slate-400">
         {t("rankings.desc")}
       </p>
+
+      {/* Share button */}
+      <div className="mt-6">
+        <button
+          onClick={generateAndDownload}
+          disabled={generating || rankings.length === 0}
+          className="inline-flex items-center gap-2 rounded-full bg-emerald-600 dark:bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400 disabled:opacity-50"
+        >
+          {generating ? (
+            <>
+              <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              {t("rankings.generating")}
+            </>
+          ) : (
+            <>
+              <DownloadIcon />
+              {t("rankings.share")}
+            </>
+          )}
+        </button>
+        <span className="ml-3 text-sm text-slate-500 dark:text-slate-400">{t("rankings.shareDesc")}</span>
+      </div>
 
       {/* Stat cards */}
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
