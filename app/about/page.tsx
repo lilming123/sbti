@@ -13,15 +13,37 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_URL = "https://sbti.xiachat.com";
+
 const stats = [
   { label: "题目数量", value: "32 道" },
   { label: "人格结果", value: "27 种" },
   { label: "核心结构", value: "15 维" },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首页", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "关于测试", item: `${SITE_URL}/about` },
+  ],
+};
+
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "关于 SBTI 测试",
+  description: "了解 SBTI 人格测试的设计原理。五组人格切面，十五个维度，27 种人格结果。",
+  url: `${SITE_URL}/about`,
+  isPartOf: { "@type": "WebSite", name: "SBTI 人格测试", url: SITE_URL },
+};
+
 export default function AboutPage() {
   return (
     <main className="flex-1">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
       {/* ── Title ── */}
       <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
         <h1 className="font-display text-5xl font-bold leading-[1.15] tracking-tight text-slate-950 sm:text-6xl">

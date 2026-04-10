@@ -39,6 +39,17 @@ async function fetchRankings(): Promise<{ rankings: RankingEntry[]; total: numbe
   return { rankings, total: data.length };
 }
 
+const SITE_URL = "https://sbti.xiachat.com";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首页", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "人格排行榜", item: `${SITE_URL}/rankings` },
+  ],
+};
+
 export default async function RankingsPage() {
   const { rankings, total } = await fetchRankings();
 
@@ -50,8 +61,27 @@ export default async function RankingsPage() {
   const dateStr = now.toISOString().slice(0, 10);
   const timeStr = now.toTimeString().slice(0, 5);
 
+  const rankingListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "SBTI 人格排行榜",
+    description: `SBTI 人格类型实时排名，共 ${total} 次提交`,
+    numberOfItems: rankings.length,
+    itemListElement: rankings.map((item, i) => {
+      const t = typeByCode[item.code];
+      return {
+        "@type": "ListItem",
+        position: i + 1,
+        name: `${t?.cn ?? item.code} (${item.code})`,
+        url: `${SITE_URL}/result/${t?.slug ?? ""}`,
+      };
+    }),
+  };
+
   return (
     <main className="flex-1">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(rankingListJsonLd) }} />
       <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
         <h1 className="font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
           SBTI 人格排行榜

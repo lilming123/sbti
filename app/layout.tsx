@@ -61,7 +61,33 @@ export const metadata: Metadata = {
   other: {
     "applicable-device": "pc,mobile",
     "mobile-agent": `format=html5; url=${SITE_URL}`,
+    "renderer": "webkit",
+    "force-rendering": "webkit",
+    "msapplication-TileColor": "#f7f4ed",
   },
+  category: "entertainment",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SBTI 人格测试",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/types/ctrl.png`,
+  sameAs: [],
+};
+
+const siteNavigationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  name: "SBTI 导航",
+  hasPart: [
+    { "@type": "WebPage", name: "首页", url: SITE_URL },
+    { "@type": "WebPage", name: "开始测试", url: `${SITE_URL}/test` },
+    { "@type": "WebPage", name: "人格类型", url: `${SITE_URL}/types` },
+    { "@type": "WebPage", name: "人格排行榜", url: `${SITE_URL}/rankings` },
+    { "@type": "WebPage", name: "关于测试", url: `${SITE_URL}/about` },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -71,6 +97,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#f7f4ed" />
         <meta name="color-scheme" content="light" />
         <link rel="canonical" href={SITE_URL} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <Header />

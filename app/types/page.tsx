@@ -14,9 +14,47 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_URL = "https://sbti.xiachat.com";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首页", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "人格类型", item: `${SITE_URL}/types` },
+  ],
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "27 种 SBTI 人格类型",
+  description: "全部 SBTI 人格测试结果类型列表",
+  numberOfItems: personalityTypes.length,
+  itemListElement: personalityTypes.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${t.cn} (${t.code})`,
+    url: `${SITE_URL}/result/${t.slug}`,
+    image: `${SITE_URL}${t.image}`,
+  })),
+};
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "27 种 SBTI 人格类型总览",
+  description: "浏览全部 27 种 SBTI 人格类型，每种都有专属插画和详细描述。",
+  url: `${SITE_URL}/types`,
+  isPartOf: { "@type": "WebSite", name: "SBTI 人格测试", url: SITE_URL },
+};
+
 export default function TypesPage() {
   return (
     <main className="flex-1">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
       <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
         <h1 className="font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
           27 种 SBTI 人格类型总览
