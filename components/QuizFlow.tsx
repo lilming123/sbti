@@ -121,20 +121,28 @@ export function QuizFlow() {
       </p>
 
       {/* dimension info */}
-      {dimInfo && (
-        <p className="mt-2 text-xs font-medium text-emerald-700/70 dark:text-emerald-400/70">
-          {dimInfo.model} &middot; {dimInfo.name}
-        </p>
-      )}
+      {dimInfo && (() => {
+        const dimCode = dimInfo.code;
+        const modelKey = dimCode.startsWith("S") ? "model.self"
+          : dimCode.startsWith("E") ? "model.emotion"
+          : dimCode.startsWith("A") && !dimCode.startsWith("Ac") ? "model.attitude"
+          : dimCode.startsWith("Ac") ? "model.action"
+          : "model.social";
+        return (
+          <p className="mt-2 text-xs font-medium text-emerald-700/70 dark:text-emerald-400/70">
+            {t(modelKey)} &middot; {t(`dim.${dimCode}`)}
+          </p>
+        );
+      })()}
 
       {/* question text */}
       <h2 className="mt-5 text-xl leading-relaxed text-slate-950 dark:text-white sm:text-2xl">
-        {currentQuestion.text}
+        {t(`q.${questionId}.text`)}
       </h2>
 
       {/* options */}
       <div className="mt-8 flex flex-col gap-3">
-        {currentQuestion.options.map((opt) => {
+        {currentQuestion.options.map((opt, idx) => {
           const isSelected = selectedValue === opt.value;
           return (
             <button
@@ -147,7 +155,7 @@ export function QuizFlow() {
                   : "border-black/5 dark:border-white/10 bg-white/85 dark:bg-dark-card text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-500"
               }`}
             >
-              {opt.label}
+              {t(`q.${questionId}.opt${idx + 1}`)}
             </button>
           );
         })}
