@@ -74,10 +74,15 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "SBTI",
-  alternateName: "SBTI 人格测试在线测试",
+  alternateName: ["SBTI 人格测试在线测试", "SBTI人格测试", "SBTI测试"],
   url: SITE_URL,
   description: "SBTI 人格测试在线测试入口。立即测出你的 SBTI 人格类型，查看 27 种人格结果、十五维人格落点和详细解读。",
   inLanguage: "zh-CN",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/types`,
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const faqJsonLd = {
@@ -97,9 +102,26 @@ const softwareJsonLd = {
   url: SITE_URL,
   applicationCategory: "EntertainmentApplication",
   operatingSystem: "Any",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "CNY",
+    availability: "https://schema.org/InStock",
+    areaServed: [
+      { "@type": "Country", name: "CN" },
+      { "@type": "Country", name: "TW" },
+      { "@type": "Country", name: "HK" },
+      { "@type": "Country", name: "SG" },
+    ],
+  },
   description: "32 道题测出你的 SBTI 人格类型，27 种结果 + 15 维度落点分析。免费、无需注册。",
   inLanguage: "zh-CN",
+  availableLanguage: {
+    "@type": "Language",
+    name: "Chinese",
+    alternateName: "zh",
+  },
+  countryOfOrigin: { "@type": "Country", name: "CN" },
 };
 
 export const revalidate = 60;

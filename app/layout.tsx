@@ -23,7 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
-    languages: { "zh-CN": "/" },
+    languages: {
+      "zh-CN": "/",
+      "zh-Hans": "/",
+      "zh-Hant": "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
     title: "SBTI 人格测试在线测试 | 27 种抽象人格",
@@ -31,6 +36,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "zh_CN",
+    alternateLocale: ["zh_TW", "zh_HK"],
     type: "website",
     images: [
       {
@@ -64,6 +70,12 @@ export const metadata: Metadata = {
     "renderer": "webkit",
     "force-rendering": "webkit",
     "msapplication-TileColor": "#f7f4ed",
+    "geo.region": "CN",
+    "geo.placename": "China",
+    "content-language": "zh-CN",
+    "distribution": "global",
+    "rating": "general",
+    "revisit-after": "7 days",
   },
   category: "entertainment",
 };
@@ -75,6 +87,15 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/images/types/ctrl.png`,
   sameAs: [],
+  areaServed: [
+    { "@type": "Country", name: "CN" },
+    { "@type": "Country", name: "TW" },
+    { "@type": "Country", name: "HK" },
+    { "@type": "Country", name: "MO" },
+    { "@type": "Country", name: "SG" },
+    { "@type": "Country", name: "MY" },
+  ],
+  knowsLanguage: ["zh-CN", "zh-TW"],
 };
 
 const siteNavigationJsonLd = {
