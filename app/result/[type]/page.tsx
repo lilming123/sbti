@@ -11,6 +11,7 @@ import {
 import type { Metadata } from "next";
 import type { Level, DimensionCode } from "@/lib/dimensions";
 import { SubmitRanking } from "@/components/SubmitRanking";
+import { SocialShare } from "@/components/SocialShare";
 
 /* ── Static params for all 27 types ── */
 export function generateStaticParams() {
@@ -240,6 +241,15 @@ export default async function ResultPage({
             查看所有人格
           </Link>
         </div>
+
+        {/* ── Social sharing ── */}
+        <SocialShare
+          code={t.code}
+          cn={t.cn}
+          intro={t.intro}
+          slug={t.slug}
+          image={t.image}
+        />
 
         {/* ── Related types ── */}
         <div className="mt-14">
