@@ -23,7 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
-    languages: { "zh-CN": "/" },
+    languages: {
+      "zh-CN": "/",
+      "zh-Hans": "/",
+      "zh-Hant": "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
     title: "SBTI 人格测试在线测试 | 27 种抽象人格",
@@ -31,6 +36,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "zh_CN",
+    alternateLocale: ["zh_TW", "zh_HK"],
     type: "website",
     images: [
       {
@@ -61,7 +67,48 @@ export const metadata: Metadata = {
   other: {
     "applicable-device": "pc,mobile",
     "mobile-agent": `format=html5; url=${SITE_URL}`,
+    "renderer": "webkit",
+    "force-rendering": "webkit",
+    "msapplication-TileColor": "#f7f4ed",
+    "geo.region": "CN",
+    "geo.placename": "China",
+    "content-language": "zh-CN",
+    "distribution": "global",
+    "rating": "general",
+    "revisit-after": "7 days",
   },
+  category: "entertainment",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SBTI 人格测试",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/types/ctrl.png`,
+  sameAs: [],
+  areaServed: [
+    { "@type": "Country", name: "CN" },
+    { "@type": "Country", name: "TW" },
+    { "@type": "Country", name: "HK" },
+    { "@type": "Country", name: "MO" },
+    { "@type": "Country", name: "SG" },
+    { "@type": "Country", name: "MY" },
+  ],
+  knowsLanguage: ["zh-CN", "zh-TW"],
+};
+
+const siteNavigationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  name: "SBTI 导航",
+  hasPart: [
+    { "@type": "WebPage", name: "首页", url: SITE_URL },
+    { "@type": "WebPage", name: "开始测试", url: `${SITE_URL}/test` },
+    { "@type": "WebPage", name: "人格类型", url: `${SITE_URL}/types` },
+    { "@type": "WebPage", name: "人格排行榜", url: `${SITE_URL}/rankings` },
+    { "@type": "WebPage", name: "关于测试", url: `${SITE_URL}/about` },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -71,6 +118,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#f7f4ed" />
         <meta name="color-scheme" content="light" />
         <link rel="canonical" href={SITE_URL} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <Header />
