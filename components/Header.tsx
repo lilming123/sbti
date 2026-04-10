@@ -34,6 +34,13 @@ const MORE_TESTS = [
   { key: "nav.soulQuiz", href: "https://xiachat.com/soul-quiz" },
   { key: "nav.soulmate", href: "https://xiachat.com/soulmate" },
   { key: "nav.mbti", href: "https://mbti.xiachat.com" },
+  { key: "nav.mbtiCareer", href: "https://mbticareer.xiachat.com" },
+] as const;
+
+const MORE_PRODUCTS = [
+  { key: "nav.lovtrip", href: "https://lovtrip.app/" },
+  { key: "nav.pixshop", href: "https://pixshop.app/" },
+  { key: "nav.xiachat", href: "https://xiachat.com" },
 ] as const;
 
 export function Header() {
@@ -41,11 +48,13 @@ export function Header() {
   const { locale, setLocale, t } = useLocale();
   const [langOpen, setLangOpen] = useState(false);
   const [testsOpen, setTestsOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const testsRef = useRef<HTMLDivElement>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!langOpen && !testsOpen) return;
+    if (!langOpen && !testsOpen && !productsOpen) return;
     const handler = (e: MouseEvent) => {
       if (langOpen && langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false);
@@ -53,10 +62,13 @@ export function Header() {
       if (testsOpen && testsRef.current && !testsRef.current.contains(e.target as Node)) {
         setTestsOpen(false);
       }
+      if (productsOpen && productsRef.current && !productsRef.current.contains(e.target as Node)) {
+        setProductsOpen(false);
+      }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [langOpen, testsOpen]);
+  }, [langOpen, testsOpen, productsOpen]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-[rgba(247,244,237,0.82)] dark:bg-[rgba(15,20,25,0.82)] backdrop-blur-xl">
@@ -100,8 +112,30 @@ export function Header() {
               </div>
             )}
           </div>
-          <a className="transition hover:text-slate-950 dark:hover:text-white" href="https://apps.apple.com/us/app/%E5%B0%8F%E9%BE%99%E8%99%BE-%E7%9C%9F%E6%AD%A3%E8%83%BD%E5%B9%B2%E6%B4%BB%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6759594177" target="_blank" rel="noopener noreferrer">{t("nav.xiaoLongXia")}</a>
-          <a className="transition hover:text-slate-950 dark:hover:text-white" href="https://xiachat.com/clawchat" target="_blank" rel="noopener noreferrer">{t("nav.socialMatching")}</a>
+          <div className="relative" ref={productsRef}>
+            <button
+              onClick={() => setProductsOpen(!productsOpen)}
+              className="flex items-center gap-1 transition hover:text-slate-950 dark:hover:text-white"
+            >
+              {t("nav.moreProducts")}
+              <ChevronDownIcon />
+            </button>
+            {productsOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-44 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-dark-card shadow-xl py-2 z-50">
+                {MORE_PRODUCTS.map((item) => (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full items-center px-4 py-2 text-sm text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-white/10"
+                  >
+                    {t(item.key)}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-2">
