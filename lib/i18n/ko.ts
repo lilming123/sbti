@@ -11,6 +11,7 @@ export const ko: Record<string, string> = {
   "nav.soulQuiz": "영혼 테스트",
   "nav.soulmate": "소울메이트 초상화",
   "nav.mbti": "MBTI 성격 테스트",
+  "nav.mbtiCareer": "MBTI 커리어 테스트",
 
   // ── Theme ──
   "theme.light": "라이트",

@@ -34,6 +34,7 @@ const MORE_TESTS = [
   { key: "nav.soulQuiz", href: "https://xiachat.com/soul-quiz" },
   { key: "nav.soulmate", href: "https://xiachat.com/soulmate" },
   { key: "nav.mbti", href: "https://mbti.xiachat.com" },
+  { key: "nav.mbtiCareer", href: "https://mbticareer.xiachat.com" },
 ] as const;
 
 export function Header() {

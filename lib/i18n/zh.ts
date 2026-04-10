@@ -11,6 +11,7 @@ export const zh: Record<string, string> = {
   "nav.soulQuiz": "灵魂测试",
   "nav.soulmate": "灵魂伴侣画像",
   "nav.mbti": "MBTI人格测试",
+  "nav.mbtiCareer": "MBTI人格测试(职业发展版)",
 
   // ── Theme ──
   "theme.light": "浅色",

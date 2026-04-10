@@ -11,6 +11,7 @@ export const ja: Record<string, string> = {
   "nav.soulQuiz": "魂の診断",
   "nav.soulmate": "ソウルメイト",
   "nav.mbti": "MBTI性格診断",
+  "nav.mbtiCareer": "MBTIキャリア診断",
 
   // ── Theme ──
   "theme.light": "ライト",

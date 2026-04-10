@@ -11,6 +11,7 @@ export const en: Record<string, string> = {
   "nav.soulQuiz": "Soul Quiz",
   "nav.soulmate": "Soulmate Portrait",
   "nav.mbti": "MBTI Test",
+  "nav.mbtiCareer": "MBTI Career Test",
 
   // ── Theme ──
   "theme.light": "Light",
