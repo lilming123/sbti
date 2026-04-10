@@ -100,6 +100,11 @@ export const zh: Record<string, string> = {
   "rankings.noData": "暂无提交数据",
   "rankings.noDataDesc": "完成测试后提交结果，即可在排行榜中显示。",
   "rankings.viewAllTypes": "查看所有人格",
+  "rankings.share": "分享排行榜",
+  "rankings.saveImage": "保存图片",
+  "rankings.generating": "生成中...",
+  "rankings.shareDesc": "保存排行榜图片，分享给朋友",
+  "rankings.shareTag": "SBTI 人格排行榜 · 实时统计",
 
   // ── Result Page ──
   "result.notFound": "未找到人格类型",

@@ -100,6 +100,11 @@ export const ko: Record<string, string> = {
   "rankings.noData": "제출 데이터 없음",
   "rankings.noDataDesc": "테스트 완료 후 결과를 제출하면 순위에 표시됩니다.",
   "rankings.viewAllTypes": "모든 유형 보기",
+  "rankings.share": "순위 공유",
+  "rankings.saveImage": "이미지 저장",
+  "rankings.generating": "생성 중...",
+  "rankings.shareDesc": "순위 이미지를 저장하고 친구에게 공유",
+  "rankings.shareTag": "SBTI 순위 · 실시간 통계",
 
   // ── Result Page ──
   "result.notFound": "성격 유형을 찾을 수 없습니다",

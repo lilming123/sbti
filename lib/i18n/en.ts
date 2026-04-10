@@ -100,6 +100,11 @@ export const en: Record<string, string> = {
   "rankings.noData": "No submission data yet",
   "rankings.noDataDesc": "Complete the test and submit your result to appear on the rankings.",
   "rankings.viewAllTypes": "View All Types",
+  "rankings.share": "Share Rankings",
+  "rankings.saveImage": "Save Image",
+  "rankings.generating": "Generating...",
+  "rankings.shareDesc": "Save rankings image and share with friends",
+  "rankings.shareTag": "SBTI Rankings · Real-time Stats",
 
   // ── Result Page ──
   "result.notFound": "Personality type not found",

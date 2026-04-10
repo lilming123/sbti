@@ -100,6 +100,11 @@ export const ja: Record<string, string> = {
   "rankings.noData": "提出データなし",
   "rankings.noDataDesc": "テスト完了後に結果を提出すると、ランキングに表示されます。",
   "rankings.viewAllTypes": "全タイプを見る",
+  "rankings.share": "ランキングを共有",
+  "rankings.saveImage": "画像を保存",
+  "rankings.generating": "生成中...",
+  "rankings.shareDesc": "ランキング画像を保存して友達に共有",
+  "rankings.shareTag": "SBTIランキング · リアルタイム統計",
 
   // ── Result Page ──
   "result.notFound": "性格タイプが見つかりません",
