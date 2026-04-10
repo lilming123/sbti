@@ -12,6 +12,10 @@ export const zh: Record<string, string> = {
   "nav.soulmate": "灵魂伴侣画像",
   "nav.mbti": "MBTI人格测试",
   "nav.mbtiCareer": "MBTI人格测试(职业发展版)",
+  "nav.moreProducts": "更多产品",
+  "nav.lovtrip": "AI行程规划",
+  "nav.pixshop": "AI修图",
+  "nav.xiachat": "AI全能助手",
 
   // ── Theme ──
   "theme.light": "浅色",

@@ -12,6 +12,10 @@ export const en: Record<string, string> = {
   "nav.soulmate": "Soulmate Portrait",
   "nav.mbti": "MBTI Test",
   "nav.mbtiCareer": "MBTI Career Test",
+  "nav.moreProducts": "More Products",
+  "nav.lovtrip": "AI Trip Planner",
+  "nav.pixshop": "AI Photo Editor",
+  "nav.xiachat": "AI Assistant",
 
   // ── Theme ──
   "theme.light": "Light",

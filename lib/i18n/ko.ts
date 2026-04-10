@@ -12,6 +12,10 @@ export const ko: Record<string, string> = {
   "nav.soulmate": "소울메이트 초상화",
   "nav.mbti": "MBTI 성격 테스트",
   "nav.mbtiCareer": "MBTI 커리어 테스트",
+  "nav.moreProducts": "더 많은 제품",
+  "nav.lovtrip": "AI 여행 플래너",
+  "nav.pixshop": "AI 사진 편집",
+  "nav.xiachat": "AI 어시스턴트",
 
   // ── Theme ──
   "theme.light": "라이트",
