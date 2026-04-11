@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { questions, drinkQuestions } from "@/lib/questions";
 import { computeResult, createSubmissionId, writeResultSnapshot } from "@/lib/scoring";
 import { dimensionMeta } from "@/lib/dimensions";
-import { useLocale } from "./Providers";
+import { useDictionary } from "./DictionaryProvider";
 
 type Phase = "quiz" | "drink_gate" | "drink_trigger" | "computing";
 
 export function QuizFlow() {
   const router = useRouter();
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});

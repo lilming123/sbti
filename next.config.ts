@@ -9,7 +9,6 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=()",
   },
-  { key: "Content-Language", value: "zh-CN" },
 ];
 
 const nextConfig: NextConfig = {

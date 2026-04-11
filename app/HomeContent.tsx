@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { LocaleLink } from "@/components/LocaleLink";
 import { useState, useEffect, useRef } from "react";
-import { useLocale } from "@/components/Providers";
+import { useDictionary } from "@/components/DictionaryProvider";
 
 interface HeroCard {
   code: string;
@@ -113,7 +113,7 @@ function OnlineCount({ text }: { text: string }) {
 }
 
 export function HomeContent({ heroCards, topRankings, rankingsTotal }: Props) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   const stats = [
     { label: t("home.stat1Label"), sub: t("home.stat1Sub") },
@@ -147,16 +147,16 @@ export function HomeContent({ heroCards, topRankings, rankingsTotal }: Props) {
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
-              <Link href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+              <LocaleLink href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
                 {t("home.startTest")}
-              </Link>
+              </LocaleLink>
               <OnlineCount text={t("home.testingNow")} />
-              <Link href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+              <LocaleLink href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
                 {t("home.browseTypes")}
-              </Link>
-              <Link href="/about" className="inline-flex items-center px-3 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 transition hover:text-slate-800 dark:hover:text-white">
+              </LocaleLink>
+              <LocaleLink href="/about" className="inline-flex items-center px-3 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 transition hover:text-slate-800 dark:hover:text-white">
                 {t("home.aboutLink")} &rarr;
-              </Link>
+              </LocaleLink>
             </div>
 
             <div className="grid grid-cols-3 gap-3 pt-4">
@@ -226,15 +226,15 @@ export function HomeContent({ heroCards, topRankings, rankingsTotal }: Props) {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Link href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+          <LocaleLink href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
             {t("home.viewAllTypes")}
-          </Link>
-          <Link href="/about" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+          </LocaleLink>
+          <LocaleLink href="/about" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
             {t("home.viewAbout")}
-          </Link>
-          <Link href="/rankings" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+          </LocaleLink>
+          <LocaleLink href="/rankings" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
             {t("home.viewRankings")}
-          </Link>
+          </LocaleLink>
         </div>
       </section>
 
@@ -252,14 +252,14 @@ export function HomeContent({ heroCards, topRankings, rankingsTotal }: Props) {
                 {t("home.rankingsDesc")}
               </p>
             </div>
-            <Link href="/rankings" className="mt-6 inline-flex w-fit items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+            <LocaleLink href="/rankings" className="mt-6 inline-flex w-fit items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
               {t("home.viewFullRankings")}
-            </Link>
+            </LocaleLink>
           </div>
 
           <div className="flex flex-col gap-4">
             {topRankings.map((r) => (
-              <Link key={r.slug} href={`/result/${r.slug}`} className="flex items-center gap-5 rounded-[28px] border border-black/5 dark:border-white/10 bg-white/85 dark:bg-dark-card px-5 py-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] dark:shadow-none transition hover:shadow-[0_18px_48px_rgba(15,23,42,0.10)]">
+              <LocaleLink key={r.slug} href={`/result/${r.slug}`} className="flex items-center gap-5 rounded-[28px] border border-black/5 dark:border-white/10 bg-white/85 dark:bg-dark-card px-5 py-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] dark:shadow-none transition hover:shadow-[0_18px_48px_rgba(15,23,42,0.10)]">
                 <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-sm font-bold text-emerald-800 dark:text-emerald-300">
                   #{r.rank}
                 </span>
@@ -272,7 +272,7 @@ export function HomeContent({ heroCards, topRankings, rankingsTotal }: Props) {
                     {r.count} {t("home.timesUnit")} / {r.pct}
                   </p>
                 </div>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>

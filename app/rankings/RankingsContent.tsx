@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/LocaleLink";
 import { useCallback, useState } from "react";
 import QRCode from "qrcode";
-import { useLocale } from "@/components/Providers";
+import { useDictionary } from "@/components/DictionaryProvider";
 
 const SITE_URL = "https://sbti.xiachat.com";
 
@@ -58,7 +58,7 @@ interface Props {
 }
 
 export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
   const [generating, setGenerating] = useState(false);
 
   const top3 = rankings.slice(0, 3);
@@ -293,7 +293,7 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
           {top3.map((item, i) => {
             const pct = total > 0 ? ((item.count / total) * 100).toFixed(1) : "0.0";
             return (
-              <Link
+              <LocaleLink
                 key={item.code}
                 href={`/result/${item.slug}`}
                 className="flex flex-col items-center rounded-[30px] border border-black/5 dark:border-white/10 bg-white/85 dark:bg-dark-card px-6 py-8 shadow-[0_18px_48px_rgba(15,23,42,0.06)] dark:shadow-none transition hover:shadow-[0_18px_48px_rgba(15,23,42,0.10)]"
@@ -308,7 +308,7 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
                 <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
                   {item.count} {t("home.timesUnit")} / {pct}%
                 </p>
-              </Link>
+              </LocaleLink>
             );
           })}
         </div>
@@ -325,7 +325,7 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
               const pct = total > 0 ? ((item.count / total) * 100).toFixed(1) : "0.0";
               const barWidth = (item.count / maxCount) * 100;
               return (
-                <Link
+                <LocaleLink
                   key={item.code}
                   href={`/result/${item.slug}`}
                   className="flex items-center gap-4 rounded-2xl px-3 py-2.5 transition hover:bg-emerald-50/60 dark:hover:bg-emerald-900/20"
@@ -343,7 +343,7 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
                       {item.count} / {pct}%
                     </span>
                   </div>
-                </Link>
+                </LocaleLink>
               );
             })}
           </div>
@@ -360,12 +360,12 @@ export function RankingsContent({ rankings, total, dateStr, timeStr }: Props) {
 
       {/* Bottom CTA */}
       <div className="mt-10 flex flex-wrap justify-center gap-3">
-        <Link href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+        <LocaleLink href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
           {t("nav.startTest")}
-        </Link>
-        <Link href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+        </LocaleLink>
+        <LocaleLink href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
           {t("rankings.viewAllTypes")}
-        </Link>
+        </LocaleLink>
       </div>
     </section>
   );

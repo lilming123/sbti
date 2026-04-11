@@ -1,9 +1,9 @@
 "use client";
 
-import { useLocale } from "@/components/Providers";
+import { useDictionary } from "@/components/DictionaryProvider";
 
 export function TestPageContent() {
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   return (
     <div className="mb-10 text-center">

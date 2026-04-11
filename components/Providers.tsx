@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { type Locale, DEFAULT_LOCALE, t as translate } from "@/lib/i18n";
 
 // ── Theme Context ──
 
@@ -23,25 +22,7 @@ export function useTheme() {
   return useContext(ThemeContext);
 }
 
-// ── Locale Context ──
-
-interface LocaleCtx {
-  locale: Locale;
-  setLocale: (l: Locale) => void;
-  t: (key: string, replacements?: Record<string, string | number>) => string;
-}
-
-const LocaleContext = createContext<LocaleCtx>({
-  locale: DEFAULT_LOCALE,
-  setLocale: () => {},
-  t: (key) => key,
-});
-
-export function useLocale() {
-  return useContext(LocaleContext);
-}
-
-// ── Combined Provider ──
+// ── Provider ──
 
 function getSystemTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
@@ -93,34 +74,9 @@ export function Providers({ children }: { children: ReactNode }) {
     applyThemeClass(r);
   }, []);
 
-  // ── Locale state ──
-  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("sbti-locale") as Locale | null;
-    if (stored && ["zh", "en", "ja", "ko"].includes(stored)) {
-      setLocaleState(stored);
-    }
-  }, []);
-
-  const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
-    localStorage.setItem("sbti-locale", l);
-    document.cookie = `sbti-locale=${l};path=/;max-age=31536000;SameSite=Lax`;
-    document.documentElement.lang = l === "zh" ? "zh-CN" : l;
-  }, []);
-
-  const t = useCallback(
-    (key: string, replacements?: Record<string, string | number>) =>
-      translate(locale, key, replacements),
-    [locale],
-  );
-
   return (
     <ThemeContext.Provider value={{ theme, resolved, setTheme }}>
-      <LocaleContext.Provider value={{ locale, setLocale, t }}>
-        {children}
-      </LocaleContext.Provider>
+      {children}
     </ThemeContext.Provider>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useLocale } from "./Providers";
+import { useDictionary } from "./DictionaryProvider";
 
 const SITE_URL = "https://sbti.xiachat.com";
 
@@ -25,7 +25,7 @@ const ShareIcon = () => (
 );
 
 export function TypeCardShare({ code, cn, intro, slug, rank, rarity }: TypeCardShareProps) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
   const [copied, setCopied] = useState(false);
 
   const resultUrl = `${SITE_URL}/result/${slug}`;

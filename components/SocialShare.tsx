@@ -2,7 +2,7 @@
 
 import { useCallback, useState, useEffect, useRef } from "react";
 import QRCode from "qrcode";
-import { useLocale } from "./Providers";
+import { useDictionary } from "./DictionaryProvider";
 
 const SITE_URL = "https://sbti.xiachat.com";
 
@@ -100,7 +100,7 @@ const CloseIcon = () => (
 /* ── Component ── */
 
 export function SocialShare({ code, cn, intro, slug, image }: ShareProps) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
   const [showModal, setShowModal] = useState<"wechat" | "xiaohongshu" | null>(null);
   const [qrDataUrl, setQrDataUrl] = useState("");
   const [copied, setCopied] = useState(false);

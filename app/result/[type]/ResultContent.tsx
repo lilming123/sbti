@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useLocale } from "@/components/Providers";
+import { LocaleLink } from "@/components/LocaleLink";
+import { useDictionary } from "@/components/DictionaryProvider";
 import type { Level, DimensionCode } from "@/lib/dimensions";
 import { SubmitRanking } from "@/components/SubmitRanking";
 import { SocialShare } from "@/components/SocialShare";
@@ -41,7 +41,7 @@ function levelColor(level: Level) {
 }
 
 export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, dimensions, related }: Props) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   const localCn = t(`type.${slug}.cn`) !== `type.${slug}.cn` ? t(`type.${slug}.cn`) : cn;
   const localIntro = t(`type.${slug}.intro`) !== `type.${slug}.intro` ? t(`type.${slug}.intro`) : intro;
@@ -136,15 +136,15 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
       {/* ── Action buttons ── */}
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         <SubmitRanking typeCode={code} />
-        <Link href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+        <LocaleLink href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
           {t("result.retakeTest")}
-        </Link>
-        <Link href="/rankings" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+        </LocaleLink>
+        <LocaleLink href="/rankings" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
           {t("result.viewRankings")}
-        </Link>
-        <Link href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
+        </LocaleLink>
+        <LocaleLink href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
           {t("result.viewAllTypes")}
-        </Link>
+        </LocaleLink>
         <a
           href="https://xiachat.com/clawchat"
           target="_blank"
@@ -213,7 +213,7 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
             const rCn = t(`type.${r.slug}.cn`) !== `type.${r.slug}.cn` ? t(`type.${r.slug}.cn`) : r.cn;
             const rIntro = t(`type.${r.slug}.intro`) !== `type.${r.slug}.intro` ? t(`type.${r.slug}.intro`) : r.intro;
             return (
-            <Link
+            <LocaleLink
               key={r.slug}
               href={`/result/${r.slug}`}
               className="flex flex-col items-center rounded-[28px] border border-black/5 dark:border-white/10 bg-white/88 dark:bg-dark-card px-5 py-6 shadow-[0_18px_48px_rgba(15,23,42,0.06)] dark:shadow-none transition hover:shadow-[0_18px_48px_rgba(15,23,42,0.10)]"
@@ -224,7 +224,7 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
               <span className="mt-3 text-xs font-semibold tracking-widest text-slate-400 uppercase">{r.code}</span>
               <p className="mt-1 text-base font-semibold text-slate-900 dark:text-white">{rCn}</p>
               <p className="mt-1 text-center text-sm text-slate-500 dark:text-slate-400">{rIntro}</p>
-            </Link>
+            </LocaleLink>
             );
           })}
         </div>

@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { readResultSnapshot } from "@/lib/scoring";
-import { useLocale } from "./Providers";
+import { useDictionary } from "./DictionaryProvider";
 
 type Status = "idle" | "submitting" | "done" | "error" | "already";
 
 export function SubmitRanking({ typeCode }: { typeCode: string }) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
   const [status, setStatus] = useState<Status>("idle");
   const [snapshot, setSnapshot] = useState<ReturnType<typeof readResultSnapshot> & { submissionId?: string; finalTypeCode?: string } | null>(null);
 

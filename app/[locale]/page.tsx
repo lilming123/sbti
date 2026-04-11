@@ -1,13 +1,78 @@
 import { personalityTypes, typeByCode } from "@/lib/types";
-import type { RankingEntry } from "@/lib/types";
 import { getSupabase } from "@/lib/supabase";
-import { HomeContent } from "./HomeContent";
+import { HomeContent } from "../HomeContent";
+import {
+  LOCALES,
+  SITE_URL,
+  getDictionary,
+  localePath,
+  generateAlternates,
+  localeToOgLocale,
+  type Locale,
+  isValidLocale,
+} from "@/lib/i18n";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-async function fetchTopRankings(): Promise<{ top3: { rank: number; code: string; cn: string; slug: string; count: number; pct: string }[]; total: number }> {
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+
+  return {
+    title: {
+      default: dict.home.h1,
+      template: "%s | SBTI",
+    },
+    description: dict.home.desc,
+    keywords: [
+      "SBTI", "SBTI测试", "SBTI人格测试", "SBTI在线测试", "SBTI人格类型",
+      "SBTI排行榜", "SBTI 27种人格", "搞笑人格测试", "人格测试",
+      "SBTI personality test", "personality test", "SBTI test online",
+    ],
+    alternates: {
+      canonical: `${SITE_URL}${localePath(locale, "/")}`,
+      languages: generateAlternates("/"),
+    },
+    openGraph: {
+      title: dict.home.h1,
+      description: dict.home.desc,
+      url: `${SITE_URL}${localePath(locale, "/")}`,
+      siteName: "SBTI",
+      locale: localeToOgLocale(locale),
+      type: "website",
+      images: [
+        {
+          url: `${SITE_URL}/images/types/ctrl.png`,
+          width: 732,
+          height: 704,
+          alt: "SBTI",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.home.h1,
+      description: dict.home.desc,
+      images: [`${SITE_URL}/images/types/ctrl.png`],
+    },
+  };
+}
+
+async function fetchTopRankings(): Promise<{
+  top3: { rank: number; code: string; cn: string; slug: string; count: number; pct: string }[];
+  total: number;
+}> {
   try {
     const supabase = getSupabase();
-
-    // 分页获取全部数据（Supabase 每次最多返回 1000 行）
     const allData: { type_code: string }[] = [];
     const pageSize = 1000;
     let from = 0;
@@ -23,9 +88,7 @@ async function fetchTopRankings(): Promise<{ top3: { rank: number; code: string;
       from += pageSize;
     }
 
-    if (allData.length === 0) {
-      return { top3: [], total: 0 };
-    }
+    if (allData.length === 0) return { top3: [], total: 0 };
 
     const counts: Record<string, number> = {};
     for (const row of allData) {
@@ -51,8 +114,6 @@ async function fetchTopRankings(): Promise<{ top3: { rank: number; code: string;
     return { top3: [], total: 0 };
   }
 }
-
-const SITE_URL = "https://sbti.xiachat.com";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -94,20 +155,25 @@ const softwareJsonLd = {
 
 export const revalidate = 60;
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+
   const { top3: topRankings, total: rankingsTotal } = await fetchTopRankings();
 
-  const heroCards = [
-    typeByCode["CTRL"],
-    typeByCode["MUM"],
-    typeByCode["OH-NO"],
-  ].filter(Boolean).map((t) => ({
-    code: t!.code,
-    cn: t!.cn,
-    intro: t!.intro,
-    image: t!.image,
-    slug: t!.slug,
-  }));
+  const heroCards = [typeByCode["CTRL"], typeByCode["MUM"], typeByCode["OH-NO"]]
+    .filter(Boolean)
+    .map((t) => ({
+      code: t!.code,
+      cn: t!.cn,
+      intro: t!.intro,
+      image: t!.image,
+      slug: t!.slug,
+    }));
 
   return (
     <main className="flex-1">

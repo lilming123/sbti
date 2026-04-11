@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useLocale } from "@/components/Providers";
+import { LocaleLink } from "@/components/LocaleLink";
+import { useDictionary } from "@/components/DictionaryProvider";
 import { type DimensionCode } from "@/lib/dimensions";
 
 const modelKeys = [
@@ -13,7 +13,7 @@ const modelKeys = [
 ];
 
 export function AboutContent() {
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   const stats = [
     { label: t("about.statQuestionsLabel"), value: t("about.statQuestionsValue") },
@@ -77,9 +77,9 @@ export function AboutContent() {
           <p className="mx-auto mt-4 max-w-lg text-base leading-8 text-slate-600 dark:text-slate-400">
             {t("about.ctaDesc")}
           </p>
-          <Link href="/test" className="mt-6 inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+          <LocaleLink href="/test" className="mt-6 inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
             {t("about.ctaButton")}
-          </Link>
+          </LocaleLink>
         </div>
       </section>
     </>

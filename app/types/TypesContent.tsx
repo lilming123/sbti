@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useLocale } from "@/components/Providers";
+import { LocaleLink } from "@/components/LocaleLink";
+import { useDictionary } from "@/components/DictionaryProvider";
 import { TypeCardShare } from "@/components/TypeCardShare";
 
 interface TypeItem {
@@ -26,7 +26,7 @@ function getRarityLabel(pct: number): { label: string; color: string } {
 }
 
 export function TypesContent({ types }: { types: TypeItem[] }) {
-  const { t } = useLocale();
+  const { t } = useDictionary();
 
   return (
     <section className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
@@ -83,9 +83,9 @@ export function TypesContent({ types }: { types: TypeItem[] }) {
               </div>
 
               <div className="mt-4 flex items-center gap-3">
-                <Link href={`/result/${tp.slug}`} className="text-sm font-medium text-emerald-700 dark:text-emerald-400 transition hover:text-emerald-900 dark:hover:text-emerald-300">
+                <LocaleLink href={`/result/${tp.slug}`} className="text-sm font-medium text-emerald-700 dark:text-emerald-400 transition hover:text-emerald-900 dark:hover:text-emerald-300">
                   {t("types.viewDetail")} &rarr;
-                </Link>
+                </LocaleLink>
                 <TypeCardShare
                   code={tp.code}
                   cn={tp.cn}
@@ -101,9 +101,9 @@ export function TypesContent({ types }: { types: TypeItem[] }) {
       </div>
 
       <div className="mt-12 flex justify-center">
-        <Link href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
+        <LocaleLink href="/test" className="inline-flex items-center rounded-full bg-emerald-600 dark:bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-400">
           {t("nav.startTest")}
-        </Link>
+        </LocaleLink>
       </div>
     </section>
   );
