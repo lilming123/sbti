@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect, useRef } from "react";
 import QRCode from "qrcode";
 import { useDictionary } from "./DictionaryProvider";
 
-const SITE_URL = "https://sbti.xiachat.com";
+const SITE_URL = "https://www.lilming.top";
 
 interface ShareProps {
   code: string;
@@ -212,7 +212,7 @@ export function SocialShare({ code, cn, intro, slug, image }: ShareProps) {
 
       ctx.fillStyle = "#64748b";
       ctx.font = '400 16px "Noto Sans SC", system-ui, sans-serif';
-      ctx.fillText("sbti.xiachat.com", qrX + qrSize + 24, bottomY + 44);
+      ctx.fillText("www.lilming.top", qrX + qrSize + 24, bottomY + 44);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = '400 14px "Noto Sans SC", system-ui, sans-serif';

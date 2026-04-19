@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { useDictionary } from "./DictionaryProvider";
 
-const SITE_URL = "https://sbti.xiachat.com";
+const SITE_URL = "https://www.lilming.top";
 
 interface TypeCardShareProps {
   code: string;

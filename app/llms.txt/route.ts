@@ -5,7 +5,7 @@ export function GET() {
 
 ## 网站信息
 - 名称: RLTI 人格测试
-- 网址: https://sbti.xiachat.com
+- 网址: https://www.lilming.top
 - 语言: 中文
 - 类型: 在线人格测试工具
 

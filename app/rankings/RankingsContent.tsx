@@ -6,7 +6,7 @@ import QRCode from "qrcode";
 import { useDictionary } from "@/components/DictionaryProvider";
 import { typeByCode } from "@/lib/types";
 
-const SITE_URL = "https://sbti.xiachat.com";
+const SITE_URL = "https://www.lilming.top";
 
 /* ── Canvas helpers ── */
 
@@ -242,7 +242,7 @@ export function RankingsContent() {
 
       ctx.fillStyle = "#64748b";
       ctx.font = '400 14px "Noto Sans SC", system-ui, sans-serif';
-      ctx.fillText("sbti.xiachat.com/rankings", cx + qrSize + 20, qrY + 38);
+      ctx.fillText("www.lilming.top/rankings", cx + qrSize + 20, qrY + 38);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = '400 13px "Noto Sans SC", system-ui, sans-serif';

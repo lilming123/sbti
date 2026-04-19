@@ -9,7 +9,7 @@ import { ko } from "./ko";
 export const LOCALES = ["zh", "en", "ja", "ko"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "zh";
-export const SITE_URL = "https://sbti.xiachat.com";
+export const SITE_URL = "https://www.lilming.top";
 
 export const LOCALE_INFO: { code: Locale; label: string; flag: string }[] = [
   { code: "zh", label: "中文", flag: "\u{1F1E8}\u{1F1F3}" },
