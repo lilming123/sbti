@@ -158,7 +158,7 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
       {/* ── Social sharing ── */}
       <SocialShare code={code} cn={localCn} intro={localIntro} slug={slug} image={image} />
 
-      {/* ── More tests ── */}
+      {/* ── More tests ──
       <div className="mt-14">
         <h2 className="font-display text-2xl font-bold tracking-tight text-slate-950 dark:text-white sm:text-3xl">
           {t("nav.moreTests")}
@@ -208,7 +208,7 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
             <p className="mt-3 text-base font-semibold text-slate-900 dark:text-white">{t("nav.mbtiCareer")}</p>
           </a>
         </div>
-      </div>
+      </div> */}
 
       {/* ── Related types ── */}
       <div className="mt-14">

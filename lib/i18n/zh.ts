@@ -24,7 +24,7 @@ export const zh: Record<string, string> = {
 
   // ── Home ──
   "home.badge": "Rust Lake Type Indicator",
-  "home.title": "RLTI 锈湖主题人格测试，测测你到底是哪一种抽象人格。",
+  "home.title": "RLTI 锈湖主题人格测试，测测你到底是哪一种人格。",
   "home.desc": "RLTI 现已支持在线测试。用锈湖式情境题作答，测出你的人格类型；测完之后，还能继续查看十五维落点和每一种人格的详细解读。",
   "home.startTest": "开始测试",
   "home.testingNow": "{count} 人正在测试",
@@ -146,7 +146,7 @@ export const zh: Record<string, string> = {
   "share.tweetText": "我在 RLTI 人格测试中测出了「{cn}」({code})！{intro}",
   "share.shareText": "我在 RLTI 人格测试中测出了「{cn}」({code})！\n{intro}\n\n来测测你是什么人格 👉 {url}\n\n#RLTI人格测试 #锈湖 #人格测试",
   "share.canvasQr": "扫码测测你的 RLTI 人格",
-  "share.canvasTag": "RLTI 人格测试 · 27 种抽象人格",
+  "share.canvasTag": "RLTI 人格测试 · 27 种人格",
   "share.button": "分享",
 
   // ── Type Card Share ──
