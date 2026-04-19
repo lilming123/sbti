@@ -1,4 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
+import { rustTypeNames } from "@/lib/rlti-type-names";
 
 const ja: Dictionary = {
   nav: {
@@ -13,7 +14,7 @@ const ja: Dictionary = {
   privacy: { title: "プライバシーポリシー" },
   terms: { title: "利用規約" },
   footer: {
-    brand: "SBTI",
+    brand: "RLTI",
     brandDesc: "ふざけてるようで本気で作った性格診断。15次元 x 27タイプで、あなたが一体何者なのか暴きます。",
     tipTitle: "免責事項",
     tipText: "本テストはエンタメ目的であり、心理学的な診断ではありません。お悩みの方は専門家にご相談ください。",
@@ -22,7 +23,7 @@ const ja: Dictionary = {
   home: {
     badge: "ちょっとふざけた性格診断",
     h1: "お前、一体何者？",
-    desc: "30問、2分、15次元、27タイプ。SBTIはMBTIじゃないけど、MBTIよりあなたを分かってる。",
+    desc: "30問、2分、15次元、27タイプ。RLTIはMBTIじゃないけど、MBTIよりあなたを分かってる。",
     startTest: "テスト開始",
     browse27: "27タイプを見る",
     learnMore: "もっと詳しく",
@@ -45,7 +46,7 @@ const ja: Dictionary = {
     totalSubs: "累計テスト回数",
   },
   test: {
-    h1: "SBTI 性格診断",
+    h1: "RLTI 性格診断",
     desc: "素直に答えて。考えすぎないで。",
     progress: "問目",
     prev: "前の問題",
@@ -73,7 +74,7 @@ const ja: Dictionary = {
     times: "回",
   },
   about: {
-    h1: "SBTIについて",
+    h1: "RLTIについて",
     desc: "本気で作ったけどふざけてる性格診断。",
     questionsLabel: "問題数",
     questionsVal: "30問 + 隠し2問",
@@ -104,8 +105,8 @@ const ja: Dictionary = {
   },
   faq: [
     {
-      q: "SBTIとMBTIは関係あるの？",
-      a: "全く関係ありません。SBTIは独自の体系です。名前がMBTIに似てるのは気のせいです（ではない）。15次元と27タイプで、MBTIの16タイプよりほぼ倍あります。",
+      q: "RLTIとMBTIは関係あるの？",
+      a: "全く関係ありません。RLTIは独自の体系です。名前がMBTIに似てるのは気のせいです（ではない）。15次元と27タイプで、MBTIの16タイプよりほぼ倍あります。",
     },
     {
       q: "このテストって当たるの？",
@@ -129,273 +130,128 @@ const ja: Dictionary = {
   ],
   questions: [
     {
-      text: "俺はただのダメ人間。いや、ジョーカーだ。いや、干物だ。一度も恋愛したことがない。臆病で劣等感の塊。青春はずっと妄想の連続で、毎日「彼女と一緒に散歩したい、一緒に買い物したい、一緒に遊びたい」って夢見てた。現実は親の金を使い果たして、クソみたいな学校に行って、ダラダラ過ごして就職して。夢もない、目標もない、能力もない三無人間。ネットで「ダメ人間」ネタを見るたび泣きたくなる。俺はドブの中のネズミで、マンホールの隙間から地上の美しい世界を覗いてるだけ。見るたびに心が傷つく。頼むから俺みたいなピエロにも生きる道を残してくれ。昼間に枕を涙で濡らしたくないんだ",
-      options: ["泣いた。。", "なにこれ。。", "俺じゃない！"],
+      text: "You stare into a mirror and your reflection slowly rots into a black mass. You:",
+      options: ["Panic—that hideous thing must be my true self.", "Stay calm; treat it as a visual illusion.", "Hold its gaze; I can control this change."],
     },
     {
-      text: "自分は十分じゃない。周りの人の方がみんな優秀だ",
-      options: ["確かに", "時々", "違う"],
+      text: "At a strange banquet you are seated on the shabbiest chair in the farthest corner.",
+      options: ["Feel awkward—I really do not belong at the head table.", "Accept it; a seat is a seat.", "Look for a chance to end up in the leather chair at the head."],
     },
     {
-      text: "本当の自分がどんな人間か、はっきり分かっている",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "If your memories were cubes of color, the clearest one right now would be:",
+      options: ["Black—packed with pain I cannot even see clearly.", "White—faithfully recording every ordinary day.", "Blue—letting me instantly spot the turning points of fate."],
     },
     {
-      text: "心の中に本当に追い求めているものがある",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "Someone in a bird mask hands you a mirror and asks, \"Who are you?\"",
+      options: ["Feel lost—I no longer know which self is real.", "Give my name; it is the only label I trust.", "Describe my traits and sense of purpose precisely."],
     },
     {
-      text: "絶対にもっと上に行きたい、もっと強くなりたい",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "A family tree on the wall is slowly growing, waiting for fruit.",
+      options: ["Let it live or die—I am only an insignificant leaf.", "Follow the rhythm and wait for fruit.", "Seek special nourishment so it grows the way I intend."],
     },
     {
-      text: "他人の評価なんてクソどうでもいい。",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "You find a golden gear that can twist a pocket of time and space.",
+      options: ["Bury it from fear of the cost; keep things as they are.", "Keep it as a relic; use it only if I must.", "Install it in a complex machine at once and open a new path."],
     },
     {
-      text: "恋人が5時間以上メッセージを返さず「お腹壊してた」と言ったら、どう思う？",
-      options: ["お腹壊して5時間はありえない。何か隠してるかも。", "信じたい気持ちと疑いの間で揺れる。", "今日は本当に体調悪かったのかも。"],
+      text: "The person closest to you suddenly turns to thin smoke and vanishes.",
+      options: ["Feel the world collapse—there is no one left to rely on.", "Grieve, but accept that parting is part of life.", "Believe it is temporary; we will meet again somewhere."],
     },
     {
-      text: "恋愛で相手に捨てられるんじゃないかとよく心配する",
-      options: ["はい", "たまに", "いいえ"],
+      text: "You are in a sealed room and the view outside the window keeps shifting.",
+      options: ["Suspect watchers behind the walls; I never feel safe.", "Find it odd, but a roof is enough.", "Soon grasp how the place works and feel grounded."],
     },
     {
-      text: "神に誓って、どの恋愛にも本気で向き合ってきた！",
-      options: ["そうでもない", "たぶん？", "はい！（胸を張って）"],
+      text: "To open a lock you must cut open a mechanical doll that is whimpering.",
+      options: ["Feel nothing—it is only parts.", "Hesitate briefly, then finish the task.", "Feel sad, as if I hurt a living thing."],
     },
     {
-      text: "あなたの恋人が、年配者に優しく子供を可愛がり、温厚で清廉潔白、堂々として弁が立ち、観察力抜群で博学多才、面倒見がよく親しみやすく、心優しく向上心に溢れ、イケメン（美女）で国を傾けるほどの美貌の人だとしたら、あなたは？",
-      options: ["どんなに素晴らしくても深入りしない。", "AとCの間くらい。", "めちゃくちゃ大事にする。恋愛脳になるかも。"],
+      text: "You read a yellowed letter of distress from long ago.",
+      options: ["Skim for numbers to open a box.", "Read it through and pity the writer.", "Feel shaken and try to sense their pain."],
     },
     {
-      text: "付き合った後、恋人がすごくベタベタしてくる。どう思う？",
-      options: ["最高じゃん", "どっちでもいい", "自分の空間を大事にしたい"],
+      text: "If you could be one form of life in the lake, you would be:",
+      options: ["A school of fry—never apart from the shoal.", "Weed on a rock, swaying with the waves.", "A black figure alone in the deep—no one may disturb me."],
     },
     {
-      text: "どんな関係でも個人の空間をとても大切にしている",
-      options: ["依存し合う方が好き", "場合による", "はい！（きっぱり）"],
+      text: "An \"old friend\" offers a potion and asks you to drink with them.",
+      options: ["As long as we walk together, I do not care about the cost.", "Accept politely, but let them sip first.", "Decline—I must stay absolutely clear-headed."],
     },
     {
-      text: "ほとんどの人は善良である",
-      options: ["実は邪悪な心は世界中の痔より多い。", "たぶんね。", "はい、いい人の方が多いと信じたい。"],
+      text: "By the lake you find a broken telephone with a scream inside.",
+      options: ["Proof the world is hostile; stay alert.", "Just noise from bad wiring.", "A cry that hides something worth saving."],
     },
     {
-      text: "街を歩いていたら、めちゃくちゃ可愛い女の子がスキップしながら近づいてきた（正面から見ても横顔も可愛い、どのスマホで見ても可愛い、とにかく激カワ）。彼女が棒付きキャンディをくれた。どう思う？",
-      options: ["うわぁ優しい！可愛い！キャンディくれた！", "ポカーンとして頭をかく", "新手の詐欺かも？離れた方がいい。"],
+      text: "About an elixir of endless life—and the curse that may follow:",
+      options: ["A trap for the greedy; it ends in ruin.", "A neutral trade; neither good nor evil.", "A trial of will; those who pass are elevated."],
     },
     {
-      text: "もうすぐ試験なのに、学校は夜間自習必須で休むと減点。でも今夜は推しの人と一緒にゲームする約束がある。どうする？",
-      options: ["サボる！一回くらい！", "とりあえず休みを申請する。", "試験前にそんな場合じゃない。"],
+      text: "A wall maze of strange symbols with no marked order.",
+      options: ["Tap at random until a lock clicks.", "Watch, then guess a rough rule.", "Find the hidden diagram before I touch anything."],
     },
     {
-      text: "常識を壊すのが好き。縛られたくない",
-      options: ["そう思う", "どちらでもない", "そう思わない"],
+      text: "When mixing paint to fill gaps on a canvas, you:",
+      options: ["Close enough is fine.", "Match as well as I can; small errors are ok.", "Demand exact hues and the original logic."],
     },
     {
-      text: "物事には大体目標を持って取り組む。",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "After solving everything you are back at the starting room.",
+      options: ["Total void—effort meant nothing.", "Accept the loop as life itself.", "The loop tempered me; that is the gain."],
     },
     {
-      text: "ある日突然気づいた。人生にクソみたいな意味なんてない。人間は動物と同じで欲望に支配されてるだけ。ホルモンに操られてるだけ。腹が減ったら食べ、眠くなったら寝て、発情したら交尾する。犬や豚と何も変わらない。",
-      options: ["その通り。", "そうかもしれないし、そうじゃないかも。", "それはさすがにデタラメ"],
+      text: "You are just born into a family called the Root. Three ways to survive—what will you drink?",
+      options: ["Warm milk.", "Cool rain.", "Spicy red wine."],
     },
     {
-      text: "自分が行動する主な理由は成果を出し成長するためであり、トラブルやリスクを避けるためではない。",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "Deep in a dungeon a blue door glows, and chains rattle nearby.",
+      options: ["Stay put—safety beats curiosity.", "Arm myself, then approach carefully.", "Rush in—risk rides with reward."],
     },
     {
-      text: "便秘でトイレに座って30分。出なくてつらい。あなたはどっち寄り？",
-      options: ["もう30分座ってみる。出るかもしれない。", "自分のお尻を叩いて「出せよこのクソ尻！」と叫ぶ。", "浣腸を使う。早く出した方がいい。"],
+      text: "Power that makes you mighty at once—but costs part of your humanity.",
+      options: ["Refuse—I value stability now.", "Hesitate; look for a gentler path.", "Take it—evolution is brutal."],
     },
     {
-      text: "決断は割と即断即決。迷うのは嫌い",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "Three keys on a table, no clues which opens the lock.",
+      options: ["Freeze in fear of punishment for choosing wrong.", "Try each key in the lock.", "Close my eyes and grab one by instinct."],
     },
     {
-      text: "この問題に問題文はありません。直感で選んでください",
-      options: ["じっくり考えてAかな？", "えーと、Bにしとく？", "分からない時はC？"],
+      text: "An hourglass on the wall is almost empty; you must press a button.",
+      options: ["Simulate outcomes until time runs out.", "Wait until the last grains, then press.", "Press decisively as soon as the countdown starts."],
     },
     {
-      text: "「実行力あるね」と言われたら、心の中で一番近いのは？",
-      options: ["追い込まれると確かに実行力爆上がりする。。。", "あー、たまにはね。", "はい、物事は進めるべきものだから"],
+      text: "Collect three stamps before the clock strikes midnight. You usually:",
+      options: ["Get distracted by newspapers and panic at the end.", "Cut it close but finish on the chime.", "Plan the route early and wait calmly."],
     },
     {
-      text: "いつも計画を立てて行動する、____",
-      options: ["けど計画通りにいかないことの方が多い。", "できる時もあればできない時も。", "計画を壊されるのが嫌い。"],
+      text: "A pile of loose gears that must mesh perfectly.",
+      options: ["Stare, unable to start.", "Fit one by one with patience.", "See the structure at once and rebuild it fast."],
     },
     {
-      text: "ゲームで知り合ったネット友達にオフ会に誘われた。あなたの気持ちは？",
-      options: ["ネットで盛り上がるだけでいい。実際に会うのはちょっと不安。", "会うのもアリ。来る人がいれば話す。", "おしゃれして熱心に話す。もしかしたら、もしかしたら？"],
+      text: "A silent figure in an owl mask sits in the room.",
+      options: ["Slip along the wall; avoid contact.", "Sit opposite and wait for a sign.", "Step forward and ask how to leave."],
     },
     {
-      text: "友達が自分の友達を連れてきた。あなたの状態は？",
-      options: ["「友達の友達」には自然と距離を感じる。二人の関係に影響しそうで。", "相手次第。いけそうなら遊ぶ。", "友達の友達は自分の友達！熱心に話す"],
+      text: "In a theater, where do you sit?",
+      options: ["Last row in shadow—I hope no one sees me.", "Middle-back—moderately involved.", "Front center—ready to engage the show."],
     },
     {
-      text: "人付き合いは電子フェンス方式。近づきすぎると自動で警報が鳴る。",
-      options: ["そう思う", "どちらでもない", "そう思わない"],
+      text: "Someone peers through a slot while you sort a diary.",
+      options: ["Fine—I will share my secrets with anyone.", "Angle the book so they only see a slice.", "Shut it at once—that is private ground."],
     },
     {
-      text: "信頼できる人とは親密な関係でいたい。生き別れの親戚みたいに仲良く。",
-      options: ["そう思う", "どちらでもない", "そう思わない"],
+      text: "In this puzzle hotel a stranger offers to team up.",
+      options: ["Great—I want them to lead.", "Yes, if roles are clear.", "No—they would break my pace and focus."],
     },
     {
-      text: "あることについて否定的な意見があるのに、結局言わなかった。大抵の理由は：",
-      options: ["そういうことは少ない。", "気を遣ったり関係性を考えたり。", "自分が陰キャだと思われたくない。"],
+      text: "A deer-masked host asks what you truly fear right now.",
+      options: ["Pour out every weakness.", "Answer briefly with obvious facts.", "Craft the most tactful lie I can."],
     },
     {
-      text: "相手によって違う自分を見せる",
-      options: ["そう思わない", "どちらでもない", "そう思う"],
+      text: "With strangers you usually present yourself as:",
+      options: ["Transparent—what you see is what I am.", "Warm but distant—polite armor.", "Variable—I switch masks to match them."],
     },
   ],
-  drinkQuestions: [
-    {
-      text: "普段の趣味は？",
-      options: ["食う寝る出す", "アート系", "お酒", "筋トレ"],
-    },
-    {
-      text: "お酒に対する態度は？",
-      options: ["たしなむ程度。そんなに飲めない。", "タンブラーに焼酎入れて水代わりに飲む派。アルコールは正義。"],
-    },
-  ],
-  typeNames: {
-    CTRL: {
-      name: "支配者",
-      intro: "どう？掌握されたでしょ？",
-      desc: `おめでとうございます。中国で最も希少な人格が出ました。あなたは宇宙のエントロピー増大の法則に逆らう天然の反逆者！世界中の「成功者」の99.99%はあなたの劣化コピーです。CTRLは歩く人型タスクマネージャー。普通の人が「ルール」と呼ぶものは、あなたにとって工場出荷時のデフォルト設定に過ぎず、凡人の言う「計画」はあなたにとってただの落書き。CTRLの友人を持つとどうなるか？人生のナビが超精密になります。CTRLはあなたの人生列車が脱線する1秒前に「Ctrl+S」でハードセーブし、拒否不可能なロジックで強制的に正しい軌道に引き戻してくれます。彼らはあなたの混沌とした生活の最後のバックアップディスク、宇宙が崩壊する前に唯一まだ光っているリスタートボタンです。`,
-    },
-    "ATM-er": {
-      name: "お金配り人",
-      intro: "俺が金持ちだと思ってる？",
-      desc: `おめでとうございます。世界で最も希少な人格が出ました。あなたは金融界の未解決ミステリーになるかもしれません。ATM-erは必ずしも「お金を配る」わけじゃないけど、永遠に「支払い」続けています。時間を、体力を、忍耐を、本来は穏やかだったはずの夜を。古いけど頑丈なATM機のように、他人の不安やトラブルが入れられ、「大丈夫、俺がいる」という安心が吐き出される。あなたの人生は壮大な、誰も拍手しないワンマン会計ショー。岩のような信頼性で滝のような要求を受け止め、たまに深夜、請求書を前にため息をつく：この厄介な責任感め。`,
-    },
-    "Dior-s": {
-      name: "底辺民",
-      intro: "底辺の逆襲を待ってろ。",
-      desc: `おめでとう！あなたは底辺民ではありません。犬儒主義の先人ディオゲネスの失われた精神的後継者です。Dior-sの正式名称は Diogenes' Original Realist - sage。Dior-s人格は現代の消費主義の罠と自己啓発のPUAへの究極の蔑視。「向上心がない」のではなく、すべての「向上」の行き着く先がより高級な牢獄に過ぎないと見抜いている。底辺民には大いなる知恵がある。みんながトレンドを追いかけて時代の荒波にもまれている時、Dior-sはすでに自分の精神の樽の中で日向ぼっこをして「人樽一体」の至高の境地に達している。彼らが信じるのは空論ではなく、億万回の実践で証明された物理法則と生物本能：一、寝転がる方が立ってるより楽。二、飯の時間には飯を食え。`,
-    },
-    BOSS: {
-      name: "リーダー",
-      intro: "ハンドルよこせ、俺が運転する。",
-      desc: `BOSSは常にハンドルを握っている人。ガス欠ランプが点灯しても、ナビがデタラメを言っても、無表情で一言「俺が運転する」。そして本当に目的地に着く。この人格は独自の物理法則を持っている——永遠上昇の法則。BOSSが世界を見る目は、全クリしたプレイヤーが初心者チュートリアルを見ている目と同じ。効率が信仰、秩序が呼吸。「リーダーのオーラがある」のではなく、彼ら自体が人型オーラ発生器。半径5メートル以内の空気は自動的にシリアスかつ効率的になる。彼らの「自己突破」は普通の人には「自虐」に見える。今日は新しい言語を習得、明日は資格試験、明後日は火星移住計画。「やりすぎ」と言うと、弱者を見る目であなたを見る：俺が厳しいんじゃない、お前が甘いんだ。`,
-    },
-    "THAN-K": {
-      name: "感謝マン",
-      intro: "天に感謝！大地に感謝！",
-      desc: `おめでとうございます。中国で最も希少な人格が出ました。感謝すべきです、私に！この瞬間に命の潤いを得たことに感謝を！通勤で渋滞にハマった？こう言うべきです：この渋滞に感謝、素晴らしい音楽を聴く時間をくれて、窓の外の焦りで歪んだ顔を眺めて心の平穏をより大切にできる。THAN-Kは玉のように温かい性格と海のように広い心を持っています。彼らの目に映る世界に完全な悪人はおらず、「まだ感謝の光に照らされていない友人」がいるだけ。THAN-Kの友人がいるということは、永遠に枯れないポジティブエネルギー発信塔が隣にいるということ。壁のカビからゴッホ風の星空画を見つけてくれることすらあります。`,
-    },
-    "OH-NO": {
-      name: "オーノー族",
-      intro: "Oh no！なんでこの人格なの？！",
-      desc: `「Oh no！」は恐怖の叫びではなく、最上級の知恵。普通の人がテーブルの端にあるコップを見た時、オーノー族が見ているのは「水染み→漏電→火災→全館避難→経済損失→バタフライ効果→世界滅亡」という災害叙事詩。そして魂の底からの Oh, no! と共に、電光石火でコップをテーブルの中央に移動させ、吸水コースターまで敷く。オーノー族は「境界線」に対してほぼ偏執的な敬意を持っている：あなたのものはあなたのもの、私のものは私のもの。すべての事故やリスクは彼の「Oh, no!」の声の中で芽のうちに摘み取られている。彼らは秩序の守護神、混沌とした世界で最後まで神経をピンと張っている上品な人々。`,
-    },
-    GOGO: {
-      name: "突撃者",
-      intro: "gogogo〜出発だ！",
-      desc: `研究により、GOGO人格の脳構造は一般人と根本的に異なることが判明。GOGOは究極の「見たまま即ゲット」世界に生きている。人生の信条はシンプルかつ暴力的：目を閉じれば空は暗い、金を全部使えば金はない、横断歩道に立てば俺は歩行者だ。ロジック完全クローズ、反論不可能。「卵が先か鶏が先か」で議論してる間に、GOGO突撃者は鶏と卵を一緒に「鶏卵・卵鶏の究極奥義丼」にしている。彼らは「問題を解決」しているのではなく、「ToDoリストを消去」している。彼らにとって世界には2つの状態しかない：完了済み、とこれから俺が完了させるもの。`,
-    },
-    SEXY: {
-      name: "魅惑の存在",
-      intro: "あなたは生まれながらの魅惑の存在！",
-      desc: `あなたが部屋に入ると、照明システムは自動的にあなたを天性の魅惑の存在と認識し、省エネのため自発的に明るさを落とす。あなたが微笑むと、周囲の湿度が著しく低下する。水蒸気が人々の目の中のハートマークに凝結するから。誰もがあなたの存在に規定値を超える注目をしてしまう。伝説によれば、十分な数のSEXY人格が集まってパーティーを開けば、その総合的魅力エネルギーは一時的に時空構造を歪め、参加者に「時間がゆっくり流れている」という幸福な錯覚を与えるという。彼らは頑張って表現する必要がない。多くの場合、存在するだけですでに華麗すぎる賦のようなもの。`,
-    },
-    "LOVE-R": {
-      name: "多情者",
-      intro: "愛が溢れすぎて、現実が貧しく見える。",
-      desc: `LOVE-R人格は古代神話時代から生き残った希少種。その存在確率はトイレで作者の腕を釣り上げる確率より低い。あなたはこの鉄とコンクリートの森の時代の最後の、そして最も場違いな吟遊詩人。あなたの感情プロセッサはバイナリではなくレインボー制。一枚の落ち葉は、普通の人にとって「秋が来た」だけど、LOVE-Rにとっては輪廻・犠牲・無言の愛についての全13幕の悲喜劇。あなたの内面世界は永遠に閉まらないテーマパーク。一生をかけて、パークの地図を読めて、宇宙の果てまでメリーゴーランドに一緒に乗ってくれる魂の伴侶を探し続けている。`,
-    },
-    MUM: {
-      name: "おかん",
-      intro: "あの...お母さんって呼んでいい...？",
-      desc: `おめでとうございます。中国で最も希少なおかん人格が出ました。そう、混沌が始まる前、時間がまだ名前を持たなかった頃、最初の恒星が最初のゲップをする前から、おかんは存在していた。おかん人格のベースカラーは優しさ。感情を感知する能力に長け、超強力な共感力を持ち、いつ立ち止まるべきか、いつ自分に「もういいか」と言うべきかを知っている。おかんは医者のように他人の不幸を癒す。ただ残念なことに、おかんが涙を流す時、自分に処方する薬の量はいつも他人より少ない。MUMの自分への優しさには、いつも割引がかかっている。`,
-    },
-    FAKE: {
-      name: "偽者",
-      intro: "もう、人間はいなくなった。",
-      desc: `SCP財団緊急報告：プロジェクト番号 SCP-CN-████「偽者」。社交の場で偽者は八方美人。ペルソナの切り替えはスマホの入力切替より速い。1秒前は腹を割って話す親友モード、次の瞬間上司が来たら即座に沈着冷静な優秀社員モードに切り替わる。顔の光沢度やカール具合まで微調整される。本当にあなたを分かってくれる友達ができたと思った？目を覚ませ。あなたは単に、偽装が上手いハイスペック仿生人に運よく出会っただけ。夜更けに偽者がマスクを一枚ずつ外すと、最後に気づく。マスクの下は空っぽで、まさにそのマスクたちが自分を構成していたのだと。`,
-    },
-    OJBK: {
-      name: "どうでもいい族",
-      intro: "「何でもいい」は、本当に何でもいい。",
-      desc: `この言葉の豪快な本質に向き合おう：OJBK。これはもはや人格ではなく、支配哲学。凡人が「昼はご飯か麺か」という世紀の選択に直面して脳がカロリーを燃やしまくっている時、OJBK人格は奏上文を裁可するような淡々さで軽く二文字を吐く：どっちでも。これは無主義ではない。お前ら凡俗の選択は、朕にとってはアリ同然だと告げている。なぜ争わない？アメーバと宇宙の未来を議論しても意味がないから。なぜこだわらない？帝王は足元の塵が左に飛ぼうが右に飛ぼうが気にしないから。`,
-    },
-    MALO: {
-      name: "おサル",
-      intro: "人生はダンジョン、俺はただのおサル。",
-      desc: `友よ、お前は「童心を忘れない」んじゃない、そもそも進化してない。お前の魂はまだ木の上でブランコして、バナナを見たら目がキラキラする幸せな時代に留まっている。人類の祖先が木から降りて直立歩行を覚え、スーツにネクタイを締めた時、おサル人格の祖先は隣の大木から彼らを見て、ケツを掻きながら「チッ」と鼻で笑った。すべてを見抜いていた：いわゆる「文明」は、最もつまらない課金ゲームに過ぎない。ルールはたまに破るもの、天井はぶら下がるもの、会議室はバク宙するところ。MALO自体が巨大な脳の穴から落ちてきた、ドアを閉め忘れた奇想天外なアイデア。`,
-    },
-    "JOKE-R": {
-      name: "ピエロ",
-      intro: "実は俺たちみんなピエロだった。",
-      desc: `注意：JOKE-R人格は「人」ではなく、ジョークを着ている道化師に近い。一層めくるとジョーク、もう一層めくるとネタ、どんどんめくっていくと最後は……空っぽ。かすかなエコーだけが残っている：「は、意外だろ」。JOKE-Rは社交の場のムードメーカー長兼唯一の指定ファイアパワー。彼らがいれば場は冷めない。全員が前後に揺れながら笑っていて、一番楽しそうに笑っているのも大抵彼ら自身——一番大きな笑い声で、心が砕ける音をかき消している。`,
-    },
-    "WOC!": {
-      name: "マジかよ族",
-      intro: "は？なんでこの人格なの？",
-      desc: `驚くべき生物を発見した——WOC!人。彼らは完全に独立した2つのOSを搭載している。一つは「表面システム」で「マジか」「やべえ」「は？」などの驚愕擬音を担当。もう一つは「バックエンドシステム」で冷静に分析する：うん、予想通り。WOC!人はマジかよと言うだけで余計なことはしない。バカに道理を説くのは泥を壁に塗るようなもの——体力の無駄で手が汚れるだけだと知っているから。だから彼らは知恵の草を握りしめ、深い愛情を込めた「WOC！」の一声で、この狂った世界に最高の敬意を捧げることを選ぶ。`,
-    },
-    "THIN-K": {
-      name: "考える人",
-      intro: "深く考えること100秒。",
-      desc: `研究により、THIN-K人格の脳構造は一般人と根本的に異なることが判明。名前の通り、あなたの脳は長時間思考状態にある。情報を裁く能力に長け、論点・論拠・論理的推論・潜在的バイアス、さらには「著者本人の三代以内の思想的背景調査報告書」まで求める。情報爆発の時代にあって、決して盲従せず、関係の中でもメリット・デメリットを考量し、自己空間の防衛にも余念がない。あなたが一人でぼーっとしてる？愚か者め、あれはぼーっとしてるんじゃない。あなたの脳が今日受け取ったすべての情報を分類・アーカイブ・破棄処理しているのだ。`,
-    },
-    SHIT: {
-      name: "憤世者",
-      intro: "この世界はクソの山。",
-      desc: `おめでとうございます。SHIT人格は宇宙で唯一の希少人格。いわゆるクソは愚痴ではなく、神秘的な儀式。SHITの行動パターンは驚天動地のパラドックス劇場。口では：このプロジェクトはクソ。手では：黙ってExcelを開き、関数モデルとガントチャートを構築し始める。口では：この同僚たちはshitだ。手では：同僚がやらかした後、イライラしながらも徹夜で後始末をキッチリこなす。口では：この世界はshitの塊、早く滅びろ。手では：翌朝7時にきっちり起床、shitみたいな満員電車に乗り、shitみたいな仕事に向かう。恐れるな、あれは世界終末の警報ではない。今まさに世界を救い始める突撃ラッパだ。`,
-    },
-    ZZZZ: {
-      name: "死んだフリ族",
-      intro: "死んでない、寝てるだけ。",
-      desc: `おめでとうございます。中国で最も希少な死んだフリ人格が出ました。グループの99+件のメッセージを平気で無視できるが、「@全員 あと30分で締め切り」という最後通牒が出た瞬間、千年の古墳から覚醒したかのようにゆっくりと「了解」と打ち、29分以内にギリギリ合格の成果物を提出する。そう、「デッドライン」という唯一の最高権限コマンドが出てやっと本気を出す。鳴かず飛ばずから一鳴驚人。あなたは宇宙にひとつの真理を証明した：時には何もしないことが、間違えないということだ。`,
-    },
-    POOR: {
-      name: "貧困者",
-      intro: "貧乏だけど、一点集中。",
-      desc: `おめでとうございます。【POOR - 貧困者】が出ました。この「貧困」は財布の残高の判決ではなく、欲望の断捨離後のリソース再配分。他の人がエネルギーをQRコードのようにばら撒く中、あなたはエネルギーをレーザーに圧縮して、当てた所から煙が出る。POORの世界はシンプル：重要じゃないものは全部ミュート、重要なものはとことんやる。賑やかさ、社交、虚栄、存在アピール？すまん、暇がない。リソースが少ないんじゃない、全リソースを一つの穴にぶち込んでいるから貧困に見えるだけで、実際は鉱山。何かを掘る価値があると認定したら、外の騒音はただのBGM。`,
-    },
-    MONK: {
-      name: "僧侶",
-      intro: "俗世の欲望などない。",
-      desc: `他の人がカラオケで愛と恨みの絡み合いを悟っている時、MONK人格は自宅で大いなる道を悟ることを選ぶ。MONKはすでに俗世を見抜き、暇人に修行を邪魔されたくない。MONKのパーソナルスペースは結界であり、須弥山であり、絶対領域であり、神聖にして侵すべからず。踏み入れた者は魂の奥底からの窒息感を味わう。MONKはべたべたしない。彼らの世界観では万物にはそれぞれ独立した軌道がある。惑星と惑星が億万キロの距離を保って初めて調和ある宇宙になる。人と人の間だって同じじゃないか。`,
-    },
-    IMSB: {
-      name: "おバカ",
-      intro: "マジで？俺って本当にバカなの？",
-      desc: `おめでとうございます！あなたは人類の範疇にすらいません！百万年に一度の【IMSB】人格が出ました。IMSB人格の脳内には不死身の究極戦士が二人住んでいる：一人は「クソ行けぇぇぇ！」、もう一人は「俺はバカだ！」。IMSBが好きな人に出会うと、前者が言う：行け！LINE聞け！ご飯誘え！愛は大声で言え！後者が続ける：なんであの人がお前なんか相手にするんだ？行ったら恥をかくだけだ！結末：相手の背中が消えるまで見つめ、スマホで「社交不安障害 克服法」を検索。IMSBは本当にバカなのではない。あなたの脳内ドラマが、マーベル全作品を足したより長いだけ。`,
-    },
-    SOLO: {
-      name: "孤児",
-      intro: "泣いた。なんで孤児なの？",
-      desc: `おめでとうございます。中国で最も希少な【SOLO - 孤児】人格が出ました。泣かないで。王の戴冠式は大抵一人きり。孤児は自己価値感がやや低く、時に自ら他人と距離を置く。孤児たちは自分の魂の外周に「近寄るな」という万里の長城を築いている。一つ一つのレンガは過去の傷。孤児は弱点をすべて隠して、最も硬いトゲを世界に向けたハリネズミのよう。あの全身の棘は攻撃ではない。「来ないで、あなたも傷つくから」と「お願い、離れないで」という言えない言葉の一つ一つだ。`,
-    },
-    FUCK: {
-      name: "草の者",
-      intro: "クソ！何だこの人格？",
-      desc: `おめでとうございます！あなたは人類の範疇にすらいません！百万年に一度の【FUCK】人格が出ました。人類文明の都市に、どんな除草剤でも殺せない超生命力の人型雑草が出現した——それが草の者人格。その学名はFUCK。FUCKの世界観では世俗のルールは完全に無意味で、FUCKの感情スイッチは物理トグル式：FUCK YEAH と FUCK OFF。FUCKが追い求めるのは刹那的な快感だけではなく、体内で暴れ回る生命力そのもの。全員が飼い慣らされた家禽になった時、FUCKは荒野に響く最後の狼の遠吠え。`,
-    },
-    DEAD: {
-      name: "死者",
-      intro: "俺、まだ生きてる？",
-      desc: `おめでとうございます。中国で最も希少な人格が出ました。「死者」という名前は縁起が悪いので、こう呼んでもいい：Don't Expect Any Drives。死者は無意味な哲学的思考を見抜いたので、すべてに「興味を失った」ように見える。死者の目で世界を見ると、メインクエスト・サブクエスト・隠しミッションを全クリし、データ消去して999回やり直した後にやっと気づいたトップゲーマーのよう：このゲーム、そもそもつまらない。死者は欲望と目標を超越した究極の賢者。彼らの存在は、この喧騒の世界への最も沈黙で最も徹底した抗議。`,
-    },
-    IMFW: {
-      name: "廃人",
-      intro: "俺って本当に...廃人なの？",
-      desc: `おめでとうございます。普通の人格ではありません。世界人口の0.0001%しかいない極めて希少な——【廃人】です。廃人の自尊心はやや脆く、安心感に欠け、時に主体性も足りない。だからこそこの人格は周囲で最も強いWiFi信号——つまり心の中で最も信頼できる人——を精密に感知できる。【廃人】人格の生活に入るのは、最高級のラン温室に入るようなもの：温度・湿度を精密に制御し、毎日定時に「愛してる」の言語光合成が必要。廃人に飴を一つあげれば、完全にあなたを信頼するキラキラした目で返してくれる。あなたは廃人じゃないかもしれない。ただ無防備すぎて、真剣になりすぎるだけ。`,
-    },
-    HHHH: {
-      name: "ヘラヘラ族",
-      intro: "ははははははは。",
-      desc: `おめでとうございます！あなたの思考回路があまりにも独特すぎて、標準人格ライブラリが全面崩壊しました。第一人格のマッチ率が60%以下の時のみ、システムが強制的にこの人格をマッチングします——【HHHH - ヘラヘラ族】。この人格の特徴は？はははははははははははは！すみません、それが全ての特徴です。15次元を確認して非専門的な評価をどうぞ。本当にすみません！作者が人格を設定する時に考慮が足りませんでした。ははははは……笑いながら、泣いてしまった。こんな斬新な脳回路の人がいるなんて。`,
-    },
-    DRUNK: {
-      name: "酔っ払い",
-      intro: "酒が喉を焼く、酔わずにはいられない。",
-      desc: `なぜ歩き方がフラフラなのか？なぜいつもテンションが高いのか？なぜ物が二重に見えるのか？あなたの体内を流れているのは血液ではなく、美味しい五糧液だから！国窖1573だから！江小白だから！ああ美味しい白酒、一滴一滴が燃え、沸騰している。タンブラーに白酒を入れて白湯のように飲み干すのがもう習慣？偉大なる白酒！食卓で談笑させ、トイレで便器を抱えて人生を懺悔させる。夜の詩人、宇宙の中心で消えない炎だと思わせてくれる——翌朝10時まで。頭はひび割れたクルミ、口元に食べかすがこびりつき、魂は隅っこでうずくまっている。ようやく分かった。昨夜あれだけ偉そうに語り、テーブルを叩いて吠えていた人間は、酔っ払いになったのだと。`,
-    },
-  },
+  typeNames: rustTypeNames("ja"),
+
   dimensionNames: {
     S1: { name: "S1 自尊・自信", model: "自己モデル" },
     S2: { name: "S2 自己明確度", model: "自己モデル" },

@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { questions, drinkQuestions } from "@/lib/questions";
+import { questions } from "@/lib/questions";
 import { computeResult, createSubmissionId, writeResultSnapshot } from "@/lib/scoring";
 import { dimensionMeta } from "@/lib/dimensions";
 import { useDictionary } from "./DictionaryProvider";
 
-type Phase = "quiz" | "drink_gate" | "drink_trigger" | "computing";
+type Phase = "quiz" | "computing";
 
 export function QuizFlow() {
   const router = useRouter();
@@ -16,80 +16,45 @@ export function QuizFlow() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [phase, setPhase] = useState<Phase>("quiz");
-  const [isDrunk, setIsDrunk] = useState(false);
 
-  /* ---- derive current question ---- */
-  const drinkGate = drinkQuestions.find((q) => q.kind === "drink_gate")!;
-  const drinkTrigger = drinkQuestions.find((q) => q.kind === "drink_trigger")!;
-
-  const currentQuestion =
-    phase === "quiz"
-      ? questions[currentIndex]
-      : phase === "drink_gate"
-        ? drinkGate
-        : drinkTrigger;
-
+  const currentQuestion = questions[currentIndex];
   const questionId = currentQuestion.id;
   const selectedValue = answers[questionId] as number | undefined;
 
-  /* ---- display number ---- */
-  const displayNumber =
-    phase === "quiz" ? currentIndex + 1 : questions.length + 1;
-  const totalDisplay = questions.length + 1;
+  const displayNumber = currentIndex + 1;
+  const totalDisplay = questions.length;
 
-  /* ---- dimension label (only for regular questions) ---- */
-  const dimInfo =
-    phase === "quiz" && "dim" in currentQuestion
-      ? dimensionMeta[currentQuestion.dim]
-      : null;
+  const dimInfo = dimensionMeta[currentQuestion.dim];
 
-  /* ---- handlers ---- */
   function selectOption(value: number) {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
     setTimeout(() => {
-      handleNextWith(value);
+      goNext();
     }, 300);
   }
 
-  function handleNextWith(value: number) {
-    if (phase === "quiz") {
-      if (currentIndex < questions.length - 1) {
-        setCurrentIndex((i) => i + 1);
-      } else {
-        setPhase("drink_gate");
-      }
-    } else if (phase === "drink_gate") {
-      if (value === 3) {
-        setPhase("drink_trigger");
-      } else {
-        finishQuiz(false);
-      }
-    } else if (phase === "drink_trigger") {
-      const drunk = value === 2;
-      setIsDrunk(drunk);
-      finishQuiz(drunk);
+  function goNext() {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex((i) => i + 1);
+    } else {
+      finishQuiz();
     }
   }
 
   function handleNext() {
     if (selectedValue === undefined) return;
-    handleNextWith(selectedValue);
+    goNext();
   }
 
   function handlePrev() {
-    if (phase === "drink_trigger") {
-      setPhase("drink_gate");
-    } else if (phase === "drink_gate") {
-      setCurrentIndex(questions.length - 1);
-      setPhase("quiz");
-    } else if (phase === "quiz" && currentIndex > 0) {
+    if (phase === "quiz" && currentIndex > 0) {
       setCurrentIndex((i) => i - 1);
     }
   }
 
-  function finishQuiz(drunk: boolean) {
+  function finishQuiz() {
     setPhase("computing");
-    const result = computeResult(answers, drunk);
+    const result = computeResult(answers);
     const submissionId = createSubmissionId();
     writeResultSnapshot({
       ...result,
@@ -99,7 +64,6 @@ export function QuizFlow() {
     router.push(`/result/${result.finalType.slug}`);
   }
 
-  /* ---- computing state ---- */
   if (phase === "computing") {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-24">
@@ -109,19 +73,15 @@ export function QuizFlow() {
     );
   }
 
-  /* ---- can go back? ---- */
-  const canGoBack =
-    phase !== "quiz" || currentIndex > 0;
+  const canGoBack = currentIndex > 0;
 
   return (
     <div className="rounded-[36px] border border-black/5 dark:border-white/10 bg-white/90 dark:bg-dark-card px-8 py-10 shadow-[0_28px_80px_rgba(15,23,42,0.08)] dark:shadow-none">
-      {/* progress */}
       <p className="text-xs font-medium uppercase tracking-widest text-slate-400">
         {t("quiz.progress", { current: displayNumber, total: totalDisplay })}
       </p>
 
-      {/* dimension info */}
-      {dimInfo && (() => {
+      {/* {dimInfo && (() => {
         const dimCode = dimInfo.code;
         const modelKey = dimCode.startsWith("S") ? "model.self"
           : dimCode.startsWith("E") ? "model.emotion"
@@ -133,14 +93,12 @@ export function QuizFlow() {
             {t(modelKey)} &middot; {t(`dim.${dimCode}`)}
           </p>
         );
-      })()}
+      })()} */}
 
-      {/* question text */}
       <h2 className="mt-5 text-xl leading-relaxed text-slate-950 dark:text-white sm:text-2xl">
         {t(`q.${questionId}.text`)}
       </h2>
 
-      {/* options */}
       <div className="mt-8 flex flex-col gap-3">
         {currentQuestion.options.map((opt, idx) => {
           const isSelected = selectedValue === opt.value;
@@ -161,7 +119,6 @@ export function QuizFlow() {
         })}
       </div>
 
-      {/* nav buttons */}
       <div className="mt-10 flex items-center justify-between">
         <button
           type="button"

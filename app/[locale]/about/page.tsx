@@ -53,7 +53,7 @@ export default async function AboutPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "SBTI", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "RLTI", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
@@ -66,9 +66,9 @@ export default async function AboutPage({
   const aboutJsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About SBTI",
+    name: "About RLTI",
     url: `${SITE_URL}${localePath(locale as Locale, "/about")}`,
-    isPartOf: { "@type": "WebSite", name: "SBTI", url: SITE_URL },
+    isPartOf: { "@type": "WebSite", name: "RLTI", url: SITE_URL },
   };
 
   return (

@@ -230,7 +230,7 @@ export function SocialShare({ code, cn, intro, slug, image }: ShareProps) {
     const dataUrl = cardPreview || (await generateShareImage());
     if (!dataUrl) return;
     const link = document.createElement("a");
-    link.download = `SBTI-${code}-${cn}.png`;
+    link.download = `RLTI-${code}-${cn}.png`;
     link.href = dataUrl;
     link.click();
   }, [generateShareImage, cardPreview, code, cn]);
@@ -262,7 +262,7 @@ export function SocialShare({ code, cn, intro, slug, image }: ShareProps) {
     const dataUrl = cardPreview || (await generateShareImage());
     if (!dataUrl) return;
     const link = document.createElement("a");
-    link.download = `SBTI-${code}-${cn}.png`;
+    link.download = `RLTI-${code}-${cn}.png`;
     link.href = dataUrl;
     link.click();
   }, [generateShareImage, cardPreview, code, cn]);
@@ -352,7 +352,7 @@ export function SocialShare({ code, cn, intro, slug, image }: ShareProps) {
                     <br /><br />
                     {resultUrl}
                     <br /><br />
-                    <span className="text-[#FF2442]">#SBTI #PersonalityTest</span>
+                    <span className="text-[#FF2442]">#RLTI #PersonalityTest</span>
                   </p>
                 </div>
 

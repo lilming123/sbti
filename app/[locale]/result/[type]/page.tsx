@@ -38,14 +38,14 @@ export async function generateMetadata({
   const resultPath = `/result/${slug}`;
 
   return {
-    title: `${typeName} ${t.code} | SBTI`,
+    title: `${typeName} ${t.code} | RLTI`,
     description: typeIntro,
     alternates: {
       canonical: `${SITE_URL}${localePath(locale, resultPath)}`,
       languages: generateAlternates(resultPath),
     },
     openGraph: {
-      title: `${typeName} ${t.code} | SBTI`,
+      title: `${typeName} ${t.code} | RLTI`,
       description: typeIntro,
       url: `${SITE_URL}${localePath(locale, resultPath)}`,
       locale: localeToOgLocale(locale),
@@ -53,7 +53,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${typeName} ${t.code} | SBTI`,
+      title: `${typeName} ${t.code} | RLTI`,
       description: typeIntro,
       images: [`${SITE_URL}${t.image}`],
     },
@@ -85,7 +85,7 @@ export default async function ResultPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "SBTI", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "RLTI", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
@@ -104,11 +104,11 @@ export default async function ResultPage({
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${t.cn} (${t.code}) — SBTI`,
+    headline: `${t.cn} (${t.code}) — RLTI`,
     description: t.intro,
     image: `${SITE_URL}${t.image}`,
     url: `${SITE_URL}${localePath(locale as Locale, `/result/${t.slug}`)}`,
-    publisher: { "@type": "Organization", name: "SBTI", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "RLTI", url: SITE_URL },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}${localePath(locale as Locale, `/result/${t.slug}`)}`,

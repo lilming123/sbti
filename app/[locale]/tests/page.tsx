@@ -70,7 +70,7 @@ export default async function TestsPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "SBTI", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "RLTI", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,

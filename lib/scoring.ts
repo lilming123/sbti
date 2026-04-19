@@ -31,10 +31,7 @@ function parsePattern(pattern: string): Level[] {
   return pattern.split("-").flatMap((seg) => seg.split("")) as Level[];
 }
 
-export function computeResult(
-  answers: Record<string, number>,
-  isDrunk: boolean
-): ComputedResult {
+export function computeResult(answers: Record<string, number>): ComputedResult {
   // Step 1: Sum raw scores per dimension
   const rawScores = {} as Record<DimensionCode, number>;
   for (const dim of DIMENSION_CODES) {
@@ -79,12 +76,8 @@ export function computeResult(
   let secondaryType: PersonalityType | undefined;
 
   // Step 4: Special overrides
-  if (isDrunk) {
-    finalType = typeByCode["DRUNK"]!;
-    secondaryType = typeByCode[bestNormal.code];
-    special = true;
-  } else if (bestNormal.similarity < 60) {
-    finalType = typeByCode["HHHH"]!;
+  if (bestNormal.similarity < 60) {
+    finalType = typeByCode["LUCKY-D"]!;
     special = true;
   }
 
@@ -115,18 +108,11 @@ function getSnapshotNarrative(
   similarity: number,
   exact: number
 ): { modeKicker: string; badge: string; sub: string } {
-  if (typeCode === "DRUNK") {
+  if (typeCode === "LUCKY-D") {
     return {
-      modeKicker: "隐藏人格已激活",
-      badge: "匹配度 100% · 酒精异常因子已接管",
-      sub: "乙醇亲和性过强，系统已直接跳过常规人格审判。",
-    };
-  }
-  if (typeCode === "HHHH") {
-    return {
-      modeKicker: "系统强制兜底",
+      modeKicker: "终极生物保底",
       badge: `标准人格库最高匹配仅 ${similarity}%`,
-      sub: "标准人格库对你的脑回路集体罢工了，于是系统把你强制分配给了 HHHH。",
+      sub: "人格数据过于混沌，已触发詹姆斯之狗兜底机制。",
     };
   }
   return {
@@ -143,7 +129,7 @@ export function createSubmissionId(): string {
   return `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 }
 
-const SNAPSHOT_KEY = "sbti:result-snapshot:v1";
+const SNAPSHOT_KEY = "rlti:result-snapshot:v1";
 
 export function writeResultSnapshot(data: object): void {
   window.localStorage.setItem(SNAPSHOT_KEY, JSON.stringify(data));

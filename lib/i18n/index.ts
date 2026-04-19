@@ -5,7 +5,8 @@ import { ko } from "./ko";
 
 // ── Locale types & constants ──
 
-export const LOCALES = ["zh", "en", "ja", "ko", "zh-TW"] as const;
+// export const LOCALES = ["zh", "en", "ja", "ko", "zh-TW"] as const;
+export const LOCALES = ["zh", "en", "ja", "ko"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "zh";
 export const SITE_URL = "https://sbti.xiachat.com";
@@ -15,7 +16,7 @@ export const LOCALE_INFO: { code: Locale; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "\u{1F1FA}\u{1F1F8}" },
   { code: "ja", label: "日本語", flag: "\u{1F1EF}\u{1F1F5}" },
   { code: "ko", label: "한국어", flag: "\u{1F1F0}\u{1F1F7}" },
-  { code: "zh-TW", label: "繁體", flag: "\u{1F1F9}\u{1F1FC}" },
+  // { code: "zh-TW", label: "繁體", flag: "\u{1F1F9}\u{1F1FC}" },
 ];
 
 export const LOCALE_LABELS: Record<Locale, string> = {
@@ -23,7 +24,7 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   en: "EN",
   ja: "日本語",
   ko: "한국어",
-  "zh-TW": "繁體",
+  // "zh-TW": "繁體",
 };
 
 export function isValidLocale(v: string): v is Locale {
@@ -42,7 +43,7 @@ const HTML_LANG_MAP: Record<Locale, string> = {
   en: "en",
   ja: "ja",
   ko: "ko",
-  "zh-TW": "zh-TW",
+  // "zh-TW": "zh-TW",
 };
 
 export function localeToHtmlLang(locale: Locale): string {
@@ -54,7 +55,7 @@ const HREFLANG_MAP: Record<Locale, string> = {
   en: "en",
   ja: "ja",
   ko: "ko",
-  "zh-TW": "zh-TW",
+  // "zh-TW": "zh-TW",
 };
 
 export function generateAlternates(path: string): Record<string, string> {
@@ -72,7 +73,7 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
   en: "en_US",
   ja: "ja_JP",
   ko: "ko_KR",
-  "zh-TW": "zh_TW",
+  // "zh-TW": "zh_TW",
 };
 
 export function localeToOgLocale(locale: Locale): string {
@@ -88,8 +89,8 @@ export function t(
   key: string,
   replacements?: Record<string, string | number>,
 ): string {
-  const locKey = locale === "zh-TW" ? "zh" : locale;
-  let text = flatDictionaries[locKey]?.[key] ?? flatDictionaries.zh[key] ?? key;
+  // const locKey = locale === "zh-TW" ? "zh" : locale;
+  let text = flatDictionaries[locale]?.[key] ?? flatDictionaries.zh[key] ?? key;
   if (replacements) {
     for (const [k, v] of Object.entries(replacements)) {
       text = text.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
@@ -99,8 +100,8 @@ export function t(
 }
 
 export function getDict(locale: Locale): Record<string, string> {
-  const locKey = locale === "zh-TW" ? "zh" : locale;
-  return flatDictionaries[locKey] ?? flatDictionaries.zh;
+  // const locKey = locale === "zh-TW" ? "zh" : locale;
+  return flatDictionaries[locale] ?? flatDictionaries.zh;
 }
 
 // ── Structured dictionary (server-side, async) ──
@@ -197,7 +198,6 @@ export interface Dictionary {
   faq: { q: string; a: string }[];
   modelGroups: { title: string; code: string; desc: string }[];
   questions: { text: string; options: string[] }[];
-  drinkQuestions: { text: string; options: string[] }[];
   typeNames: Record<string, { name: string; intro: string; desc: string }>;
   dimensionNames: Record<string, { name: string; model: string }>;
   dimensionExplanations: Record<string, { H: string; M: string; L: string }>;
@@ -212,7 +212,7 @@ const structuredDictionaries: Record<
   en: () => import("@/dictionaries/en"),
   ja: () => import("@/dictionaries/ja"),
   ko: () => import("@/dictionaries/ko"),
-  "zh-TW": () => import("@/dictionaries/zh-TW"),
+  // "zh-TW": () => import("@/dictionaries/zh-TW"),
 };
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {

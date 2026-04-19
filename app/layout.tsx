@@ -5,7 +5,7 @@ import { Providers } from "@/components/Providers";
 import { Analytics } from "@vercel/analytics/next";
 import { localeToHtmlLang, type Locale, SITE_URL } from "@/lib/i18n";
 
-const SITE_NAME = "SBTI 人格测试";
+const SITE_NAME = "RLTI 人格测试";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,7 +40,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/types/ctrl.png`,
+  logo: `${SITE_URL}/images/types/jakob.png`,
   sameAs: [],
   areaServed: [
     { "@type": "Country", name: "CN" },
@@ -65,14 +65,13 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang} className="h-full antialiased" suppressHydrationWarning>
       <head>
-        <meta name="google-adsense-account" content="ca-pub-8592502425550051" />
         <meta name="theme-color" content="#f7f4ed" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)" />
         <meta name="color-scheme" content="light dark" />
         {/* Prevent FOUC for dark mode */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("sbti-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches);if(d)document.documentElement.classList.add("dark")}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem("rlti-theme")||localStorage.getItem("sbti-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches);if(d)document.documentElement.classList.add("dark")}catch(e){}})()`,
           }}
         />
         <script

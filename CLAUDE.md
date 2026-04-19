@@ -39,7 +39,7 @@ Two separate translation layers coexist:
 1. Sum answers per dimension (S1-S3, E1-E3, A1-A3, Ac1-Ac3, So1-So3)
 2. Convert to levels: <=3 -> L, =4 -> M, >=5 -> H
 3. Euclidean distance match against 25 normal type patterns
-4. Special overrides: "yes" to drink question -> DRUNK type; best match < 60% -> HHHH type
+4. Special overrides: best match < 60% -> LUCKY-D type (James's dog fallback; shares the-dog art with GOOD-B)
 
 ### Data files
 

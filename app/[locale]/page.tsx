@@ -29,13 +29,13 @@ export async function generateMetadata({
   return {
     title: {
       default: dict.home.h1,
-      template: "%s | SBTI",
+      template: "%s | RLTI",
     },
     description: dict.home.desc,
     keywords: [
-      "SBTI", "SBTI测试", "SBTI人格测试", "SBTI在线测试", "SBTI人格类型",
-      "SBTI排行榜", "SBTI 27种人格", "搞笑人格测试", "人格测试",
-      "SBTI personality test", "personality test", "SBTI test online",
+      "RLTI", "RLTI测试", "RLTI人格测试", "RLTI在线测试", "RLTI人格类型",
+      "RLTI排行榜", "RLTI 27种人格", "搞笑人格测试", "人格测试",
+      "RLTI personality test", "personality test", "RLTI test online",
     ],
     alternates: {
       canonical: `${SITE_URL}${localePath(locale, "/")}`,
@@ -45,15 +45,15 @@ export async function generateMetadata({
       title: dict.home.h1,
       description: dict.home.desc,
       url: `${SITE_URL}${localePath(locale, "/")}`,
-      siteName: "SBTI",
+      siteName: "RLTI",
       locale: localeToOgLocale(locale),
       type: "website",
       images: [
         {
-          url: `${SITE_URL}/images/types/ctrl.png`,
+          url: `${SITE_URL}/images/types/jakob.png`,
           width: 732,
           height: 704,
-          alt: "SBTI",
+          alt: "RLTI",
         },
       ],
     },
@@ -61,7 +61,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: dict.home.h1,
       description: dict.home.desc,
-      images: [`${SITE_URL}/images/types/ctrl.png`],
+      images: [`${SITE_URL}/images/types/jakob.png`],
     },
   };
 }
@@ -69,10 +69,10 @@ export async function generateMetadata({
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "SBTI",
-  alternateName: ["SBTI 人格测试在线测试", "SBTI人格测试", "SBTI测试", "SBTI Personality Test"],
+  name: "RLTI",
+  alternateName: ["RLTI 人格测试在线测试", "RLTI人格测试", "RLTI测试", "RLTI Personality Test"],
   url: SITE_URL,
-  description: "SBTI 人格测试在线测试入口。立即测出你的 SBTI 人格类型，查看 27 种人格结果、十五维人格落点和详细解读。",
+  description: "RLTI 人格测试在线测试入口。立即测出你的 RLTI 人格类型，查看 27 种人格结果、十五维人格落点和详细解读。",
   inLanguage: ["zh-CN", "en", "ja", "ko"],
   potentialAction: {
     "@type": "SearchAction",
@@ -84,7 +84,7 @@ const websiteJsonLd = {
 const softwareJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "SBTI 人格测试",
+  name: "RLTI 人格测试",
   url: SITE_URL,
   applicationCategory: "EntertainmentApplication",
   operatingSystem: "Any",
@@ -94,7 +94,7 @@ const softwareJsonLd = {
     priceCurrency: "CNY",
     availability: "https://schema.org/InStock",
   },
-  description: "32 道题测出你的 SBTI 人格类型，27 种结果 + 15 维度落点分析。免费、无需注册。",
+  description: "30 道锈湖主题情境题测出你的 RLTI 人格类型，27 种结果 + 15 维度落点分析。免费、无需注册。",
   inLanguage: ["zh-CN", "en", "ja", "ko"],
   availableLanguage: [
     { "@type": "Language", name: "Chinese", alternateName: "zh" },
@@ -112,7 +112,7 @@ export default async function HomePage({
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
 
-  const heroCards = [typeByCode["CTRL"], typeByCode["MUM"], typeByCode["OH-NO"]]
+  const heroCards = [typeByCode["SACRI"], typeByCode["EMO-S"], typeByCode["CHASE"]]
     .filter(Boolean)
     .map((t) => ({
       code: t!.code,

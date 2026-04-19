@@ -98,7 +98,7 @@ export default async function TypesPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "SBTI", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "RLTI", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
@@ -111,7 +111,7 @@ export default async function TypesPage({
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "27 SBTI Personality Types",
+    name: "27 RLTI Personality Types",
     numberOfItems: personalityTypes.length,
     itemListElement: personalityTypes.map((t, i) => ({
       "@type": "ListItem",

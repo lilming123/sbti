@@ -251,7 +251,7 @@ export function RankingsContent() {
       // Download
       const dataUrl = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.download = `SBTI-Rankings-${dateStr}.png`;
+      link.download = `RLTI-Rankings-${dateStr}.png`;
       link.href = dataUrl;
       link.click();
     } finally {

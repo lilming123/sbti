@@ -1,4 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
+import { rustTypeNames } from "@/lib/rlti-type-names";
 
 const ko: Dictionary = {
   nav: {
@@ -13,7 +14,7 @@ const ko: Dictionary = {
   privacy: { title: "개인정보처리방침" },
   terms: { title: "이용약관" },
   footer: {
-    brand: "SBTI",
+    brand: "RLTI",
     brandDesc: "장난 같지만 진지하게 만든 성격 테스트. 15차원 x 27가지 유형으로 당신이 대체 뭔지 파헤칩니다.",
     tipTitle: "면책 조항",
     tipText: "본 테스트는 오락 목적이며, 심리학적 진단이 아닙니다. 정서적 어려움이 있으시면 전문가와 상담하세요.",
@@ -22,7 +23,7 @@ const ko: Dictionary = {
   home: {
     badge: "좀 엉뚱한 성격 테스트",
     h1: "너 대체 뭐야?",
-    desc: "30문항, 2분, 15차원, 27가지 유형. SBTI는 MBTI가 아니지만, MBTI보다 당신을 더 잘 알아요.",
+    desc: "30문항, 2분, 15차원, 27가지 유형. RLTI는 MBTI가 아니지만, MBTI보다 당신을 더 잘 알아요.",
     startTest: "테스트 시작",
     browse27: "27가지 유형 둘러보기",
     learnMore: "자세히 알아보기",
@@ -45,7 +46,7 @@ const ko: Dictionary = {
     totalSubs: "누적 테스트 횟수",
   },
   test: {
-    h1: "SBTI 성격 테스트",
+    h1: "RLTI 성격 테스트",
     desc: "솔직하게 답하세요. 너무 생각하지 말고.",
     progress: "번째 문항",
     prev: "이전",
@@ -73,7 +74,7 @@ const ko: Dictionary = {
     times: "회",
   },
   about: {
-    h1: "SBTI 소개",
+    h1: "RLTI 소개",
     desc: "진지하게 만들었지만 좀 엉뚱한 성격 테스트.",
     questionsLabel: "문항 수",
     questionsVal: "30문항 + 히든 2문항",
@@ -104,8 +105,8 @@ const ko: Dictionary = {
   },
   faq: [
     {
-      q: "SBTI랑 MBTI랑 무슨 관계예요?",
-      a: "아무 관계도 없어요. SBTI는 우리가 만든 독자적인 체계예요. 이름이 MBTI랑 비슷한 건... 우연이에요(아님). 15차원에 27가지 유형이라 MBTI의 16유형보다 거의 두 배 많아요.",
+      q: "RLTI랑 MBTI랑 무슨 관계예요?",
+      a: "아무 관계도 없어요. RLTI는 우리가 만든 독자적인 체계예요. 이름이 MBTI랑 비슷한 건... 우연이에요(아님). 15차원에 27가지 유형이라 MBTI의 16유형보다 거의 두 배 많아요.",
     },
     {
       q: "이 테스트 정확해요?",
@@ -129,273 +130,128 @@ const ko: Dictionary = {
   ],
   questions: [
     {
-      text: "나는 그냥 찐따가 아니라, 조커이자 썩은 물고기다. 평생 연애 한 번 못해봤다. 소심하고 열등감 덩어리. 내 청춘은 끝없는 망상의 연속이었다. 매일 여자친구랑 같이 길 걷고, 같이 쇼핑하고, 같이 노는 상상을 했다. 현실은 부모님 돈 날리고, 쓰레기 학교 나오고, 대충 살다 직장 다니고. 꿈도 없고, 목표도 없고, 능력도 없는 3무(無) 인간. 인터넷에서 찐따 드립치는 거 볼 때마다 울고 싶다. 나는 하수구 밑의 쥐, 맨홀 틈으로 지상의 아름다운 세상을 훔쳐보는 것뿐이다. 볼 때마다 마음에 상처가 되고, 내 생존 공간이 압축되는 느낌이다. 제발 나 같은 피에로한테도 살 길을 좀 남겨주라, 낮에 베개 적시게 울고 싶지 않다고",
-      options: ["울었다..", "이게 뭐야..", "나 아닌데!"],
+      text: "You stare into a mirror and your reflection slowly rots into a black mass. You:",
+      options: ["Panic—that hideous thing must be my true self.", "Stay calm; treat it as a visual illusion.", "Hold its gaze; I can control this change."],
     },
     {
-      text: "나는 부족해. 주변 사람들이 다 나보다 잘나",
-      options: ["맞아", "가끔", "아니야"],
+      text: "At a strange banquet you are seated on the shabbiest chair in the farthest corner.",
+      options: ["Feel awkward—I really do not belong at the head table.", "Accept it; a seat is a seat.", "Look for a chance to end up in the leather chair at the head."],
     },
     {
-      text: "진짜 내가 어떤 사람인지 잘 알고 있다",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "If your memories were cubes of color, the clearest one right now would be:",
+      options: ["Black—packed with pain I cannot even see clearly.", "White—faithfully recording every ordinary day.", "Blue—letting me instantly spot the turning points of fate."],
     },
     {
-      text: "마음속에 진심으로 추구하는 게 있다",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "Someone in a bird mask hands you a mirror and asks, \"Who are you?\"",
+      options: ["Feel lost—I no longer know which self is real.", "Give my name; it is the only label I trust.", "Describe my traits and sense of purpose precisely."],
     },
     {
-      text: "무조건 위로 올라가야 해. 더 강해져야 해",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "A family tree on the wall is slowly growing, waiting for fruit.",
+      options: ["Let it live or die—I am only an insignificant leaf.", "Follow the rhythm and wait for fruit.", "Seek special nourishment so it grows the way I intend."],
     },
     {
-      text: "남들 평가? 개나 줘버려.",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "You find a golden gear that can twist a pocket of time and space.",
+      options: ["Bury it from fear of the cost; keep things as they are.", "Keep it as a relic; use it only if I must.", "Install it in a complex machine at once and open a new path."],
     },
     {
-      text: "애인이 5시간 넘게 답장 안 하고 '배탈 났었어'라고 했다. 어떻게 생각해?",
-      options: ["배탈로 5시간은 말이 안 돼. 뭔가 숨기는 거 아냐?", "믿고 싶은 마음과 의심 사이에서 흔들린다.", "오늘 진짜 컨디션이 안 좋았나 보지."],
+      text: "The person closest to you suddenly turns to thin smoke and vanishes.",
+      options: ["Feel the world collapse—there is no one left to rely on.", "Grieve, but accept that parting is part of life.", "Believe it is temporary; we will meet again somewhere."],
     },
     {
-      text: "연애할 때 상대한테 버림받을까 봐 자주 걱정된다",
-      options: ["응", "가끔", "아니"],
+      text: "You are in a sealed room and the view outside the window keeps shifting.",
+      options: ["Suspect watchers behind the walls; I never feel safe.", "Find it odd, but a roof is enough.", "Soon grasp how the place works and feel grounded."],
     },
     {
-      text: "하늘에 맹세코, 모든 연애에 진심이었어!",
-      options: ["그건 아닌데", "글쎄?", "응! (당당하게)"],
+      text: "To open a lock you must cut open a mechanical doll that is whimpering.",
+      options: ["Feel nothing—it is only parts.", "Hesitate briefly, then finish the task.", "Feel sad, as if I hurt a living thing."],
     },
     {
-      text: "당신의 연인이 어르신을 공경하고 아이를 사랑하고, 온화하고 청렴결백하고, 당당하고 말을 잘하고, 관찰력이 뛰어나고, 박학다식하고, 친절하고 다가가기 쉽고, 마음씨 착하고, 적극적이고 의기양양하고, 외모까지 빼어나게 잘생기거나(예쁘거나) 한 사람이라면, 이때 당신은?",
-      options: ["아무리 완벽해도 깊이 빠지진 않을 거야.", "A와 C 사이쯤.", "엄청 소중히 할 거야. 연애 뇌될 수도."],
+      text: "You read a yellowed letter of distress from long ago.",
+      options: ["Skim for numbers to open a box.", "Read it through and pity the writer.", "Feel shaken and try to sense their pain."],
     },
     {
-      text: "사귀고 나서 애인이 엄청 들러붙는다. 어떻게 생각해?",
-      options: ["개꿀인데", "상관없어", "독립적인 공간이 더 좋아"],
+      text: "If you could be one form of life in the lake, you would be:",
+      options: ["A school of fry—never apart from the shoal.", "Weed on a rock, swaying with the waves.", "A black figure alone in the deep—no one may disturb me."],
     },
     {
-      text: "어떤 관계에서든 개인 공간을 매우 중시한다",
-      options: ["서로 의지하는 게 더 좋아", "상황 봐서", "응! (단호하게)"],
+      text: "An \"old friend\" offers a potion and asks you to drink with them.",
+      options: ["As long as we walk together, I do not care about the cost.", "Accept politely, but let them sip first.", "Decline—I must stay absolutely clear-headed."],
     },
     {
-      text: "대부분의 사람은 선량하다",
-      options: ["사실 악한 마음은 세상의 치질보다 더 많아.", "아마도.", "응, 좋은 사람이 더 많다고 믿고 싶어."],
+      text: "By the lake you find a broken telephone with a scream inside.",
+      options: ["Proof the world is hostile; stay alert.", "Just noise from bad wiring.", "A cry that hides something worth saving."],
     },
     {
-      text: "길을 가는데 엄청 귀여운 꼬마 여자아이가 깡충깡충 다가왔다 (정면, 옆에서 봐도 귀엽고, 어떤 폰으로 봐도 귀엽고, 진짜 미친 듯이 귀여운 애). 사탕을 하나 건네준다. 이때 당신의 생각은?",
-      options: ["으앙 착해 귀여워! 사탕을 줬어!", "멍하니 머리를 긁는다", "이건 신종 사기 아냐? 피하는 게 좋겠어."],
+      text: "About an elixir of endless life—and the curse that may follow:",
+      options: ["A trap for the greedy; it ends in ruin.", "A neutral trade; neither good nor evil.", "A trial of will; those who pass are elevated."],
     },
     {
-      text: "시험이 얼마 안 남았는데, 학교 규정상 야간 자율학습 필수에 빠지면 감점. 근데 오늘 밤 좋아하는 사람이랑 게임하기로 했다. 어떡해?",
-      options: ["땡! 한 번쯤이야!", "그냥 결석계 내자.", "시험 앞인데 무슨."],
+      text: "A wall maze of strange symbols with no marked order.",
+      options: ["Tap at random until a lock clicks.", "Watch, then guess a rough rule.", "Find the hidden diagram before I touch anything."],
     },
     {
-      text: "관습을 깨는 걸 좋아하고, 속박당하기 싫다",
-      options: ["동의해", "중립", "동의 안 해"],
+      text: "When mixing paint to fill gaps on a canvas, you:",
+      options: ["Close enough is fine.", "Match as well as I can; small errors are ok.", "Demand exact hues and the original logic."],
     },
     {
-      text: "일할 때 보통 목표가 있다.",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "After solving everything you are back at the starting room.",
+      options: ["Total void—effort meant nothing.", "Accept the loop as life itself.", "The loop tempered me; that is the gain."],
     },
     {
-      text: "어느 날 갑자기 깨달았다. 인생에 무슨 개 같은 의미가 있어? 사람은 동물이랑 똑같이 욕망에 지배당하는 거잖아. 호르몬에 조종당하는 존재. 배고프면 먹고, 졸리면 자고, 발정 나면 교미하고. 돼지나 개나 우리나 다를 게 없어.",
-      options: ["맞아 그렇지.", "아닐 수도 있고 맞을 수도 있고.", "이건 진짜 헛소리야"],
+      text: "You are just born into a family called the Root. Three ways to survive—what will you drink?",
+      options: ["Warm milk.", "Cool rain.", "Spicy red wine."],
     },
     {
-      text: "나는 성과를 내고 성장하기 위해 행동하지, 귀찮음과 리스크를 피하려고 하는 게 아니다.",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "Deep in a dungeon a blue door glows, and chains rattle nearby.",
+      options: ["Stay put—safety beats curiosity.", "Arm myself, then approach carefully.", "Rush in—risk rides with reward."],
     },
     {
-      text: "변비로 변기에 앉은 지 30분째. 안 나와서 괴롭다. 이때 당신은?",
-      options: ["30분 더 앉아본다. 혹시 나올 수도.", "엉덩이를 때리며 '야 이 죽일 엉덩이야, 빨리 싸!'라고 외친다.", "관장약 쓴다. 빨리 내보내는 게 답이야."],
+      text: "Power that makes you mighty at once—but costs part of your humanity.",
+      options: ["Refuse—I value stability now.", "Hesitate; look for a gentler path.", "Take it—evolution is brutal."],
     },
     {
-      text: "결정은 비교적 빠르게 내린다. 망설이는 게 싫다",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "Three keys on a table, no clues which opens the lock.",
+      options: ["Freeze in fear of punishment for choosing wrong.", "Try each key in the lock.", "Close my eyes and grab one by instinct."],
     },
     {
-      text: "이 문항에는 문제가 없습니다. 눈 감고 고르세요",
-      options: ["곰곰이 생각해보니 A인 것 같은데?", "아, 그냥 B로 할까?", "모르면 C?"],
+      text: "An hourglass on the wall is almost empty; you must press a button.",
+      options: ["Simulate outcomes until time runs out.", "Wait until the last grains, then press.", "Press decisively as soon as the countdown starts."],
     },
     {
-      text: "'실행력 좋다'는 말을 들으면, 속마음에 가장 가까운 건?",
-      options: ["벼랑 끝에 몰리면 확실히 실행력 폭발함...", "아, 가끔은.", "응, 일이란 건 밀고 나가야 하는 거니까"],
+      text: "Collect three stamps before the clock strikes midnight. You usually:",
+      options: ["Get distracted by newspapers and panic at the end.", "Cut it close but finish on the chime.", "Plan the route early and wait calmly."],
     },
     {
-      text: "나는 항상 계획을 세워서 행동한다, ____",
-      options: ["근데 계획대로 안 될 때가 더 많지.", "될 때도 있고 안 될 때도 있고.", "계획이 틀어지는 게 싫어."],
+      text: "A pile of loose gears that must mesh perfectly.",
+      options: ["Stare, unable to start.", "Fit one by one with patience.", "See the structure at once and rebuild it fast."],
     },
     {
-      text: "게임으로 알게 된 온라인 친구들이 오프라인 모임에 초대했다. 당신의 생각은?",
-      options: ["온라인에서 떠드는 건 괜찮은데, 실제로 만나기엔 좀 불안해.", "만나는 것도 괜찮아. 오면 대화 좀 하지 뭐.", "차려입고 열정적으로 대화할 거야. 혹시 모르잖아?"],
+      text: "A silent figure in an owl mask sits in the room.",
+      options: ["Slip along the wall; avoid contact.", "Sit opposite and wait for a sign.", "Step forward and ask how to leave."],
     },
     {
-      text: "친구가 자기 친구를 데리고 왔다. 당신의 상태는?",
-      options: ["'친구의 친구'에겐 자연스레 거리감이 느껴져. 둘 관계에 영향 줄까 봐.", "상대 보고 결정. 놀 만하면 놀지.", "친구의 친구도 내 친구! 열정적으로 대화해야지"],
+      text: "In a theater, where do you sit?",
+      options: ["Last row in shadow—I hope no one sees me.", "Middle-back—moderately involved.", "Front center—ready to engage the show."],
     },
     {
-      text: "나는 사람과의 관계에 전자 울타리를 치는 스타일. 너무 가까이 오면 자동 경보가 울린다.",
-      options: ["동의해", "중립", "동의 안 해"],
+      text: "Someone peers through a slot while you sort a diary.",
+      options: ["Fine—I will share my secrets with anyone.", "Angle the book so they only see a slice.", "Shut it at once—that is private ground."],
     },
     {
-      text: "내가 신뢰하는 사람과는 가깝게 지내고 싶다. 잃어버린 친척처럼 친하게.",
-      options: ["동의해", "중립", "동의 안 해"],
+      text: "In this puzzle hotel a stranger offers to team up.",
+      options: ["Great—I want them to lead.", "Yes, if roles are clear.", "No—they would break my pace and focus."],
     },
     {
-      text: "어떤 일에 부정적인 의견이 있었는데 결국 말하지 않았다. 대부분의 이유는:",
-      options: ["그런 경우가 별로 없어.", "체면이나 관계 때문에.", "어두운 사람이라고 보이기 싫어서."],
+      text: "A deer-masked host asks what you truly fear right now.",
+      options: ["Pour out every weakness.", "Answer briefly with obvious facts.", "Craft the most tactful lie I can."],
     },
     {
-      text: "나는 사람에 따라 다른 모습을 보여준다",
-      options: ["동의 안 해", "중립", "동의해"],
+      text: "With strangers you usually present yourself as:",
+      options: ["Transparent—what you see is what I am.", "Warm but distant—polite armor.", "Variable—I switch masks to match them."],
     },
   ],
-  drinkQuestions: [
-    {
-      text: "평소 취미가 뭐예요?",
-      options: ["먹고 자고 싸고", "예술 관련", "음주", "운동"],
-    },
-    {
-      text: "음주에 대한 태도는?",
-      options: ["한 잔 정도는 즐기지만 많이는 못 마셔요.", "텀블러에 소주 넣고 물 대신 마시는 편. 알코올은 진리."],
-    },
-  ],
-  typeNames: {
-    CTRL: {
-      name: "장악자",
-      intro: "어때, 내가 장악했지?",
-      desc: `축하합니다. 중국에서 가장 희귀한 성격이 나왔어요. 당신은 우주 엔트로피 증가 법칙에 맞서는 천생 반역자입니다! 전 세계 소위 성공한 사람들의 99.99%가 당신의 열화 카피예요. CTRL은 걸어 다니는 인간형 태스크 매니저. 보통 사람이 '규칙'이라 부르는 건 당신에게 출하 시 기본 설정일 뿐이고, 범인들의 '계획'은 심심풀이 낙서에 불과해요. CTRL 친구가 있다는 건? 당신의 인생 내비게이션이 초정밀해진다는 뜻이에요. CTRL은 당신의 인생 열차가 탈선하기 1초 전에 'Ctrl+S'로 하드 세이브하고, 거부 불가능한 로직으로 정상 궤도에 강제 복귀시켜요. 그들은 당신의 혼란스러운 삶의 마지막 백업 디스크, 우주가 무너지기 전 유일하게 빛나는 리스타트 버튼이에요.`,
-    },
-    "ATM-er": {
-      name: "돈 푸는 사람",
-      intro: "내가 부자인 줄 알아?",
-      desc: `축하합니다. 세상에서 가장 희귀한 성격이 나왔어요. 당신은 금융계의 미해결 미스터리가 될 수도. ATM-er가 진짜 '돈을 주는' 건 아니지만, 영원히 '결제' 중이에요. 시간을, 체력을, 인내심을, 원래 평온했어야 할 밤을. 오래됐지만 튼튼한 ATM처럼, 다른 사람의 불안과 골칫거리가 들어가고 '괜찮아, 내가 있잖아'라는 안심이 나와요. 당신의 인생은 아무도 박수 안 치는 성대한 원맨 결제 쇼. 반석 같은 신뢰로 폭포 같은 요구를 견디고, 가끔 한밤중에 청구서를 보며 한숨 쉬어요: 이 빌어먹을 어쩔 수 없는 책임감.`,
-    },
-    "Dior-s": {
-      name: "찐따",
-      intro: "찐따의 역습을 기다려라.",
-      desc: `축하해요! 당신은 찐따가 아닙니다. 견유학파 현인 디오게네스의 잃어버린 정신적 후계자예요. 찐따의 정식 명칭은 Diogenes' Original Realist - sage. Dior-s 성격은 현대 소비주의 함정과 자기계발 사기에 대한 궁극의 경멸. '의욕이 없는' 게 아니라, 모든 '의욕'의 끝이 더 고급스러운 감옥이라는 걸 이미 꿰뚫어 봤어요. 찐따에겐 대지혜가 있어요. 남들이 트렌드를 쫓다 시대의 파도에 휩쓸릴 때, Dior-s는 자기만의 정신적 통 안에서 일광욕하며 '인통합일'의 최고 경지에 올랐어요. 그들이 믿는 건 빈말이 아니라, 수억 번의 실천으로 검증된 물리 법칙과 생물 본능이에요: 1. 누워 있는 게 서 있는 것보다 편하다. 2. 밥때 되면 밥을 먹어야 한다.`,
-    },
-    BOSS: {
-      name: "리더",
-      intro: "핸들 줘, 내가 운전할게.",
-      desc: `BOSS는 항상 핸들을 잡고 있는 사람. 연료등이 빨간불이어도, 내비가 헛소리를 해도, 무표정하게 한마디: 내가 운전할게. 그리고 진짜 목적지에 도착해요. 이 성격은 독자적인 물리 법칙을 가지고 있어요 — 영원 상승의 법칙. BOSS가 세상을 보는 눈은 올클리어한 플레이어가 초보 튜토리얼을 보는 것과 같아요. 효율이 신앙이고, 질서가 호흡이에요. '리더 기질이 있다'는 게 아니라, 그 자체가 인간형 기장(氣場) 발생기. 반경 5미터 안의 공기가 자동으로 진지하고 효율적으로 변해요. 그들의 '자기 돌파'는 보통 사람 눈에는 '자학'이에요. 오늘 새 언어 습득, 내일 자격증 시험, 모레 화성 식민 계획. '너무 빡세다'고 하면 약한 자를 보는 눈으로 쳐다봐요: 내가 독한 게 아니라, 네가 물렁한 거야.`,
-    },
-    "THAN-K": {
-      name: "감사맨",
-      intro: "하늘에 감사! 땅에 감사!",
-      desc: `축하합니다. 중국에서 가장 희귀한 성격이 나왔어요. 저에게 감사해야 합니다! 이 순간 생명의 윤택함을 얻으신 것에 감사를! 출근길에 교통 체증이라고요? 이렇게 말해야 해요: 이 체증에 감사해, 이 아름다운 노래를 더 들을 시간을 주고, 창밖에서 초조함에 일그러진 얼굴들을 감상하며 내 마음의 평온을 더 소중히 여기게 해줘. THAN-K는 옥처럼 따뜻한 성격과 바다처럼 넓은 가슴을 가지고 있어요. 그들 눈에 완전한 나쁜 사람은 없고, '아직 감사의 빛이 비추지 않은 친구'만 있어요. THAN-K 친구가 있다는 건 영원히 마르지 않는 긍정 에너지 송신탑이 옆에 있다는 것. 벽 모서리의 곰팡이에서 고흐 풍 별이 빛나는 밤을 발견해주기까지 해요.`,
-    },
-    "OH-NO": {
-      name: "오노족",
-      intro: "Oh no! 왜 이 성격이 나온 거야?!",
-      desc: `'Oh no!'는 공포의 비명이 아니라 최상급 지혜예요. 보통 사람이 탁자 모서리의 컵을 볼 때, 오노족이 보는 건 '물자국→누전→화재→전층 대피→경제적 손실→나비효과→세계 멸망'으로 이어지는 재난 서사시. 그래서 영혼 깊은 곳에서 나오는 Oh, no! 와 함께, 번개처럼 빠르게 컵을 탁자 한가운데로 옮기고, 흡수 코스터까지 깔아요. 오노족은 '경계'에 대해 거의 강박적인 존중을 가져요: 네 것은 네 것, 내 것은 내 것. 모든 사고와 리스크는 그의 'Oh, no!' 한 마디에 싹이 잘려요. 그들은 질서의 수호신, 혼란스러운 세상에서 마지막까지 신경을 팽팽하게 유지하는 격조 있는 사람들이에요.`,
-    },
-    GOGO: {
-      name: "돌진자",
-      intro: "gogogo~ 출발!",
-      desc: `연구 결과, GOGO 성격의 뇌 구조는 일반인과 근본적으로 다르다는 것이 밝혀졌어요. GOGO는 궁극의 'WYSIWYG' 세계에 살아요. 인생 신조가 단순 명쾌: 눈을 감으면 하늘은 까맣고, 돈을 다 쓰면 돈이 없고, 횡단보도에 서면 나는 보행자다. 논리 완벽 종결, 반박 불가. 남들이 '닭이 먼저냐 달걀이 먼저냐'로 토론할 때, GOGO는 이미 닭과 달걀을 합쳐 '닭달걀 궁극 오의 덮밥'을 만들었어요. 그들은 '문제를 해결'하는 게 아니라 '할 일 목록을 삭제'하는 거예요. 그들에게 세상에는 두 가지 상태뿐이에요: 완료됨, 그리고 내가 곧 완료할 것.`,
-    },
-    SEXY: {
-      name: "매혹 존재",
-      intro: "당신은 타고난 매혹의 존재!",
-      desc: `당신이 방에 들어서면 조명 시스템이 자동으로 '천생 매혹'으로 인식하고, 에너지 절약을 위해 알아서 밝기를 낮춰요. 당신이 미소 지으면 주변 공기 습도가 현저히 떨어져요. 수증기가 사람들 눈 속의 하트로 응결되거든요. 누구든 당신의 존재에 기준치 초과의 주목을 할 수밖에 없어요. 전설에 따르면, 충분한 SEXY 성격이 모여 파티를 하면, 그 종합 매력 에너지가 일시적으로 시공간 구조를 왜곡해 참가자들에게 '시간이 느리게 간다'는 행복한 착각을 만든대요. 그들은 열심히 표현할 필요 없어요. 많은 경우, 존재 자체가 이미 과분히 화려한 부(賦)와 같아요.`,
-    },
-    "LOVE-R": {
-      name: "다정한 자",
-      intro: "사랑이 넘쳐서, 현실이 빈약해 보여.",
-      desc: `LOVE-R 성격은 고대 신화 시대에서 생존한 희귀종. 존재 확률은 당신이 변기에서 작가 팔을 낚을 확률보다 낮아요. 당신은 이 철근 콘크리트 숲 시대의 마지막, 가장 시대착오적인 음유시인이에요. 당신의 감정 프로세서는 이진법이 아니라 무지개제(制)거든요. 낙엽 한 장이 보통 사람에겐 '가을이 왔다'지만, LOVE-R에겐 윤회, 희생, 말 없는 사랑에 대한 13막 희비극이에요. 당신의 내면세계는 영원히 문 닫지 않는 테마파크. 평생을 거쳐, 파크 지도를 읽을 줄 알고, 우주의 끝까지 회전목마를 같이 타줄 영혼의 반려자를 찾아요.`,
-    },
-    MUM: {
-      name: "엄마",
-      intro: "혹시...엄마라고 불러도 돼요...?",
-      desc: `축하합니다. 중국에서 가장 희귀한 엄마 성격이 나왔어요. 그래요, 혼돈이 열리기 전, 시간이 아직 이름도 없었을 때, 첫 번째 항성이 첫 트림을 하기 전에, 이미 엄마가 있었어요. 엄마 성격의 밑바탕은 따뜻함. 감정을 감지하는 데 능하고, 초강력 공감 능력을 가지고, 언제 멈춰야 하는지, 언제 자기한테 '됐어'라고 말해야 하는지 알아요. 엄마는 의사처럼 남의 불행을 치유해요. 안타깝게도, 엄마가 눈물 흘릴 때, 자기에게 처방하는 약은 남에게 주는 것보다 항상 한 사이즈 적어요. MUM의 자기 자신에 대한 다정함에는 항상 할인이 적용돼요.`,
-    },
-    FAKE: {
-      name: "위장자",
-      intro: "이미, 인간은 없다.",
-      desc: `SCP 재단 긴급 보고서: 프로젝트 번호 SCP-CN-████ '위장자'. 사교 자리에서 위장자는 팔방미인. 페르소나 전환이 스마트폰 키보드 전환보다 빨라요. 1초 전까지 허심탄회한 절친 모드였다가, 다음 순간 상사가 오면 즉시 침착하고 믿음직한 모범 사원 모드로 전환. 얼굴의 광택도와 곱슬기까지 미세 조정돼요. 진심으로 나를 이해하는 친구를 사귄 줄 알았어요? 깨어나세요. 당신은 그저 위장에 능한 고성능 바이오닉 안드로이드를 운 좋게 만난 것뿐이에요. 한밤중에 위장자가 가면을 한 겹씩 벗기면, 마지막에야 깨달아요. 가면 밑은 텅 비어있고, 바로 그 가면들이 자신을 구성하고 있었다는 것을.`,
-    },
-    OJBK: {
-      name: "상관없음족",
-      intro: "아무거나라고 한 건, 진짜 아무거나야.",
-      desc: `이 단어의 거친 본질과 마주합시다: OJBK. 이건 이미 성격이 아니라 지배 철학이에요. 범인(凡人)이 '점심에 밥이냐 면이냐'의 세기적 선택 앞에서 뇌가 칼로리를 맹렬히 태울 때, OJBK 성격은 상소문을 재가하듯 담담하게 두 글자를 뱉어요: 아무거나. 이건 주관이 없는 게 아니에요. 너희 범속한 선택은 짐에게는 개미에 불과하다고 알려주는 거예요. 왜 싸우지 않냐고? 짚신벌레와 우주의 미래를 토론해봤자 의미 없으니까. 왜 따지지 않냐고? 제왕은 발밑의 먼지가 왼쪽으로 날리든 오른쪽으로 날리든 신경 안 쓰니까.`,
-    },
-    MALO: {
-      name: "원숭이",
-      intro: "인생은 던전이고, 나는 그냥 원숭이.",
-      desc: `친구야, 넌 '동심을 간직한' 게 아니라 애초에 진화를 안 한 거야. 네 영혼은 아직 나무에 매달려 그네 타고, 바나나 보면 눈이 반짝이던 행복한 시절에 머물러 있어. 인류의 조상이 나무에서 내려와 직립 보행을 배우고 정장에 넥타이를 맬 때, 원숭이 성격의 조상은 옆 나무에서 그들을 보며 엉덩이를 긁고, 코웃음 '찍'을 쳤어. 다 꿰뚫어봤거든: 소위 '문명'이란, 가장 재미없고 가장 시시한 유료 게임이야. 규칙은 가끔 깨라고 있는 거고, 천장은 매달리라고 있는 거고, 회의실은 백플립하라고 있는 거야. MALO 자체가 거대한 뇌구멍에서 떨어져 나와서 문 닫는 걸 깜빡한 기발한 아이디어야.`,
-    },
-    "JOKE-R": {
-      name: "피에로",
-      intro: "알고 보니 우리 모두 피에로였다.",
-      desc: `주의: JOKE-R 성격은 '사람'이 아니라, 농담을 걸치고 다니는 광대에 가까워요. 한 겹 열면 개그, 또 한 겹 열면 코미디, 계속 열어 나가면 마지막에... 비어있어요. 희미한 메아리만 남아 말해요: 하, 의외지? JOKE-R은 사교 분위기 담당 팀장 겸 유일한 지정 화력. 그들이 있으면 분위기는 절대 식지 않아요. 모두가 앞뒤로 젖히며 웃고, 가장 신나게 웃는 건 대개 그들 자신이에요 — 가장 큰 웃음소리로, 마음이 부서지는 소리를 덮으면서.`,
-    },
-    "WOC!": {
-      name: "헐 족",
-      intro: "헐, 왜 이 성격이야?",
-      desc: `신기한 생물을 발견했어요 — WOC!인. 완전히 독립된 두 OS를 탑재하고 있어요. 하나는 '표면 시스템'으로 '헐' '대박' '뭐??' 같은 놀람 의성어 담당. 다른 하나는 '백엔드 시스템'으로 냉정하게 분석: 음, 역시 예상대로. WOC!인은 헐만 하고 남의 일에 참견 안 해요. 바보한테 도리를 설명하는 건 진흙을 벽에 바르는 것과 같다는 걸 잘 아니까 — 체력만 낭비하고 손만 더러워져요. 그래서 지혜의 풀을 쥐고, 깊은 애정이 담긴 'WOC!'한 마디로 이 미친 세상에 최고의 경의를 바치기로 했어요.`,
-    },
-    "THIN-K": {
-      name: "사색가",
-      intro: "심층 사고 100초 완료.",
-      desc: `연구 결과, THIN-K 성격의 뇌 구조는 일반인과 근본적으로 다른 것으로 밝혀졌어요. 이름 그대로, 당신의 뇌는 오랜 시간 사고 상태에 있어요. 정보를 심판하는 데 능하고, 논점, 근거, 논리적 추론, 잠재적 편향, 나아가 '저자 본인 3대 이내 사상적 배경 조사 보고서'까지 요구해요. 정보 폭발 시대에 절대 맹목적으로 따르지 않고, 관계에서도 이해득실을 따지며, 자기 공간 방어에도 철저해요. 당신이 혼자 멍 때리는 것 같다고요? 바보, 그건 멍이 아니라, 뇌가 오늘 수신한 모든 정보를 분류·아카이빙·폐기 처리하고 있는 거예요.`,
-    },
-    SHIT: {
-      name: "분노자",
-      intro: "이 세상은, 한 무더기 똥이다.",
-      desc: `축하합니다. SHIT 성격은 우주에서 유일한 희귀 성격이에요. 이른바 똥은 불평이 아니라 신비로운 의식을 치르는 거예요. SHIT의 행동 패턴은 경천동지의 역설극. 입으로는: 이 프로젝트는 똥이야. 손으로는: 조용히 엑셀을 열고 함수 모델과 간트 차트를 만들기 시작해요. 입으로는: 이 동료들 전부 shit이야. 손으로는: 동료가 사고 친 뒤, 짜증내면서도 밤새워 뒷수습을 깔끔하게 해요. 입으로는: 이 세상은 shit 덩어리야, 빨리 멸망해라. 손으로는: 다음 날 아침 7시 정각에 일어나, shit 같은 지하철 타고, shit 같은 직장에 출근해요. 두려워하지 마세요. 그건 세계 멸망 경보가 아니라, 지금 막 세상을 구하러 출동하는 돌격 나팔이에요.`,
-    },
-    ZZZZ: {
-      name: "죽은 척쟁이",
-      intro: "안 죽었어, 자고 있을 뿐이야.",
-      desc: `축하합니다. 중국에서 가장 희귀한 죽은 척 성격이 나왔어요. 단톡방의 99+ 메시지를 태연히 무시할 수 있지만, 누군가 '@전체 30분 남았습니다'라는 최후통첩을 보내면, 천년 고분에서 깨어난 것처럼 느릿느릿 '확인'을 치고, 29분 안에 겨우 합격점짜리 과제를 제출해요. 그래요, '데드라인'이라는 유일한 최고 권한 명령이 나와야 비로소 폭발해요. 울지도 날지도 않다가 한 번에 놀래키죠. 당신은 우주에 하나의 진리를 증명했어요: 때로는 아무것도 안 하는 것이 실수를 안 하는 것이다.`,
-    },
-    POOR: {
-      name: "빈곤자",
-      intro: "가난하지만, 한 우물만 판다.",
-      desc: `축하합니다. 【POOR - 빈곤자】가 나왔어요. 이 '빈곤'은 지갑 잔고의 판결문이 아니라, 욕망 정리 후의 자원 재배분이에요. 남들이 에너지를 QR코드처럼 뿌릴 때, 당신은 에너지를 레이저로 압축해서 쏘는 곳마다 연기가 나요. POOR의 세계는 심플해요: 중요하지 않은 건 전부 음소거, 중요한 건 끝까지 파요. 시끌벅적, 사교, 허영, 존재감 과시? 미안, 시간 없어. 자원이 적은 게 아니라, 전부 한 구멍에 쏟아부어서 빈곤해 보이는 거지, 실제로는 광산이에요. 무언가를 파볼 가치가 있다고 판단하면, 바깥 소음은 그냥 배경음악일 뿐.`,
-    },
-    MONK: {
-      name: "승려",
-      intro: "세속적 욕망 따위 없다.",
-      desc: `남들이 노래방에서 사랑과 미움의 얽힘을 깨달을 때, MONK 성격은 집에서 대도를 깨우치길 선택해요. MONK는 이미 속세를 꿰뚫어 보고, 한가한 사람이 수행을 방해하는 걸 원치 않아요. MONK의 개인 공간은 결계이자, 수미산이자, 절대 영역이며, 신성불가침이에요. 침범자는 영혼 깊은 곳에서 오는 질식감을 느끼게 돼요. MONK들은 찐득찐득 엮이지 않아요. 그들의 세계관에서 만물에는 각자의 독립된 궤도가 있거든요. 행성과 행성 사이가 억만 킬로미터의 거리를 유지해야 조화로운 우주가 되는데, 사람과 사람 사이라고 왜 안 되겠어요?`,
-    },
-    IMSB: {
-      name: "바보",
-      intro: "진심이야? 나 진짜 바보야?",
-      desc: `축하합니다! 당신은 인류 범주에도 속하지 않아요! 백만 년에 한 번 나오는 【IMSB】 성격이에요. IMSB 뇌 안에는 불사의 궁극 전사 두 명이 살고 있어요: 하나는 '씨X 간다!'이고, 다른 하나는 '나 바보지!'예요. IMSB가 호감 가는 사람을 만나면, 전자가 말해요: 가! 카톡 받아! 밥 약속 잡아! 사랑은 크게 말해야 돼! 후자가 이어요: 걔가 뭐가 아쉬워서 너를 봐? 가면 망신만 당해! 최종 결과: 상대의 뒷모습이 사라질 때까지 쳐다보다가 핸드폰 꺼내서 '사회불안장애 극복법' 검색. IMSB는 진짜 바보가 아니에요. 당신의 내면극이 마블 유니버스 전 작품을 합친 것보다 긴 것뿐이에요.`,
-    },
-    SOLO: {
-      name: "고아",
-      intro: "울었다. 왜 고아인 거야?",
-      desc: `축하합니다. 중국에서 가장 희귀한 【SOLO - 고아】 성격이 나왔어요. 울지 마세요. 왕의 대관식은 보통 혼자 치르는 법이에요. 고아의 자기 가치감은 다소 낮아서, 때때로 스스로 타인과 거리를 두어요. 고아들은 자기 영혼의 외곽에 '가까이 오지 마'라는 만리장성을 쌓았어요. 벽돌 하나하나가 과거의 상처예요. 고아는 모든 약점을 숨기고 가장 단단한 가시를 세상을 향해 세운 고슴도치와 같아요. 그 온몸의 가시는 공격이 아니라, 차마 말 못한 '가까이 오지 마, 네가 다칠까 봐'와 '제발, 떠나지 마'의 한마디 한마디예요.`,
-    },
-    FUCK: {
-      name: "풀뽑기자",
-      intro: "ㅅㅂ! 이게 무슨 성격이야?",
-      desc: `축하합니다! 당신은 인류 범주에도 속하지 않아요! 백만 년에 한 번 나오는 【FUCK】 성격이에요. 인류 문명의 도시에, 어떤 제초제로도 죽일 수 없는 초생명력의 인간형 잡초가 나타났어요 — 그것이 풀뽑기자 성격이에요. 학명은 FUCK. FUCK의 세계관에서 세속의 규칙은 완전히 무의미하고, FUCK의 감정 스위치는 물리 토글식: FUCK YEAH와 FUCK OFF. FUCK이 추구하는 건 순간의 쾌감만이 아니라, 체내에서 마구 돌아다니는 생명력 그 자체예요. 모두가 순한 가금류로 길들여졌을 때, FUCK은 황야에 울려 퍼지는 마지막 늑대의 울음이에요.`,
-    },
-    DEAD: {
-      name: "사자(死者)",
-      intro: "나, 아직 살아 있는 거야?",
-      desc: `축하합니다. 중국에서 가장 희귀한 성격이 나왔어요. '사자'라는 이름이 좀 재수 없어서, Don't Expect Any Drives라고 불러도 돼요. 사자는 무의미한 철학적 사유를 꿰뚫어 봤기에 모든 것에 '흥미를 잃은' 것처럼 보여요. 사자의 눈으로 세상을 보면, 메인 퀘스트·사이드 퀘스트·히든 미션을 올클리어하고, 데이터 삭제 후 999번 재시작한 뒤에야 깨달은 탑 게이머 같아요: 이 게임, 애초에 재미없었어. 사자는 욕망과 목표를 초월한 궁극의 현자. 그들의 존재는, 이 시끄러운 세상에 대한 가장 침묵하고도 가장 철저한 항의예요.`,
-    },
-    IMFW: {
-      name: "폐인",
-      intro: "나 진짜...폐인이야?",
-      desc: `축하합니다. 보통 성격이 아니에요. 세계 인구의 0.0001%밖에 안 되는 극히 희귀한 — 【폐인】이에요. 폐인의 자존감은 좀 약하고, 안정감이 부족하며, 가끔 주체성도 부족해요. 그래서 이 성격은 주변에서 가장 강한 WiFi 신호 — 즉 마음속에서 가장 믿을 수 있는 사람을 정밀하게 감지할 수 있어요. 【폐인】 성격의 삶에 들어서는 건, 최고급 난초 온실에 들어서는 것과 같아요: 온도, 습도를 정밀 제어하고, 매일 정시에 '사랑해'라는 언어 광합성이 필요해요. 폐인에게 사탕 하나를 주면, 당신을 완전히 신뢰하는 반짝반짝한 눈빛으로 돌려줘요. 당신은 폐인이 아닐 수도. 그냥 너무 무방비하고, 너무 쉽게 진지해지는 것뿐이에요.`,
-    },
-    HHHH: {
-      name: "헤헤족",
-      intro: "ㅋㅋㅋㅋㅋㅋ.",
-      desc: `축하합니다! 당신의 사고 회로가 너무 독특해서, 표준 성격 라이브러리가 전면 붕괴했어요. 1순위 성격 매칭률이 60% 미만일 때만 시스템이 강제로 매칭하는 성격이에요 — 【HHHH - 헤헤족】. 이 성격의 특성은? ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ! 죄송해요, 그게 특성의 전부예요. 15차원을 확인하며 비전문적 평가를 해보세요. 정말 죄송합니다! 작성자가 성격 설정 시 충분히 고려하지 못해서 이런 상황이 발생했어요. ㅋㅋㅋㅋㅋ…… 웃다가, 울어버렸어요. 이런 뇌회로를 가진 사람이 있다니.`,
-    },
-    DRUNK: {
-      name: "술꾼",
-      intro: "독한 술이 목을 태우니, 취하지 않을 수 없다.",
-      desc: `왜 걸음이 비틀비틀해요? 왜 항상 텐션이 높아요? 왜 사물이 겹쳐 보여요? 당신의 체내를 흐르는 건 피가 아니라, 맛있는 오량액이거든요! 국교 1573이거든요! 이과두주거든요! 오, 맛있는 백주여. 한 방울 한 방울이 타오르고, 끓어올라요. 텀블러에 소주를 넣고 물처럼 벌컥 마시는 게 이미 습관인가요? 위대한 백주! 밥상에서는 유쾌하게 농담하게 하고, 화장실에서는 변기를 안고 인생을 참회하게 해요. 밤의 시인, 우주의 중심에서 꺼지지 않는 불꽃이라 느끼게 해줘요 — 다음 날 오전 10시까지. 머리는 갈라진 호두, 입가에 음식 찌꺼기가 붙어있고, 영혼은 구석에 웅크리고 있어요. 마침내 깨달았어요. 어젯밤 큰소리로 주장하고, 탁자를 두드리며 고함치던 사람은, 술꾼이 되었다는 것을.`,
-    },
-  },
+  typeNames: rustTypeNames("ko"),
+
   dimensionNames: {
     S1: { name: "S1 자존감·자신감", model: "자아 모델" },
     S2: { name: "S2 자기 명확도", model: "자아 모델" },

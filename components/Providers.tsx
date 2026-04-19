@@ -45,7 +45,8 @@ export function Providers({ children }: { children: ReactNode }) {
 
   // Initialize theme from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("sbti-theme") as Theme | null;
+    const stored =
+      (localStorage.getItem("rlti-theme") ?? localStorage.getItem("sbti-theme")) as Theme | null;
     const initial = stored && ["light", "dark", "system"].includes(stored) ? stored : "system";
     setThemeState(initial);
     const r = initial === "system" ? getSystemTheme() : initial;
@@ -68,7 +69,7 @@ export function Providers({ children }: { children: ReactNode }) {
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t);
-    localStorage.setItem("sbti-theme", t);
+    localStorage.setItem("rlti-theme", t);
     const r = t === "system" ? getSystemTheme() : t;
     setResolved(r);
     applyThemeClass(r);
