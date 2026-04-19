@@ -145,14 +145,14 @@ export function ResultContent({ code, cn, intro, desc, slug, image, hasPattern, 
         <LocaleLink href="/types" className="inline-flex items-center rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-dark-card px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 shadow-sm transition hover:bg-slate-50 dark:hover:bg-white/10">
           {t("result.viewAllTypes")}
         </LocaleLink>
-        <a
+        {/* <a
           href="https://xiachat.com/clawchat"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center rounded-full border border-emerald-300 dark:border-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 px-6 py-3 text-sm font-semibold text-emerald-800 dark:text-emerald-300 shadow-sm transition hover:bg-emerald-100 dark:hover:bg-emerald-900/50"
         >
           {t("nav.socialMatching")}
-        </a>
+        </a> */}
       </div>
 
       {/* ── Social sharing ── */}
